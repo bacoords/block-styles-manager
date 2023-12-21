@@ -11,6 +11,7 @@ import { useState } from "@wordpress/element";
 import { store as coreDataStore } from "@wordpress/core-data";
 import { transformStyles } from "@wordpress/block-editor";
 import { registerBlockStyle } from "@wordpress/blocks";
+import { decodeEntities } from "@wordpress/html-entities";
 
 function EditBlockStyle({ attributes, closeForm }) {
 	const [blockStyle, setBlockStyle] = useState(attributes);
@@ -45,7 +46,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 
 			registerBlockStyle(blockStyle.meta.block_type, {
 				name: blockStyle.slug,
-				label: blockStyle.title,
+				label: decodeEntities(blockStyle.title),
 			});
 
 			console.log(transformed);

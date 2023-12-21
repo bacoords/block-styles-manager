@@ -170,6 +170,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/html-entities */ "@wordpress/html-entities");
+/* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
@@ -208,7 +211,7 @@ function EditBlockStyle({
       }], ".editor-styles-wrapper");
       (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.registerBlockStyle)(blockStyle.meta.block_type, {
         name: blockStyle.slug,
-        label: blockStyle.title
+        label: (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__.decodeEntities)(blockStyle.title)
       });
       console.log(transformed);
       closeForm();
