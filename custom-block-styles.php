@@ -102,8 +102,12 @@ function register_block_styles() {
 				array(
 					'label'        => get_the_title(),
 					'name'         => get_post_field( 'post_name', get_the_ID() ),
-					'inline_style' => get_the_content(),
-				)
+					'inline_style' => str_replace(
+						'selector',
+						'.is-style-' . get_post_field( 'post_name', get_the_ID() ),
+						get_the_content(),
+					),
+				),
 			);
 		}
 		wp_reset_postdata();

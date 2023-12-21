@@ -52,6 +52,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _EditBlockStyle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditBlockStyle */ "./src/EditBlockStyle.js");
+/* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/html-entities */ "@wordpress/html-entities");
+/* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -67,7 +70,7 @@ function BlockStyles() {
     id: 0,
     title: "New Block Style",
     slug: "new-block-style",
-    content: ".is-style-new-block-style { background-color: red; }",
+    content: "selector { background-color: red; }",
     meta: {
       block_type: "core/group"
     }
@@ -93,12 +96,30 @@ function BlockStyles() {
       console.log(records);
     }
   }, [hasResolved]);
+  const filterSelector = (css, record) => {
+    return css.replace(/selector/g, `.is-style-${record.slug}`);
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (records) {
+      var _window$parent$docume;
+      // Add records CSS to iframe
+      let css = "";
+      records.forEach(record => {
+        css += filterSelector(record.content.raw, record);
+      });
+      const style = document.createElement("style");
+      style.innerHTML = css;
+      style.id = "wpdev-block-styles";
+      let destination = (_window$parent$docume = window.parent.document.querySelector('iframe[name="editor-canvas"]')?.document.head) !== null && _window$parent$docume !== void 0 ? _window$parent$docume : document.head;
+      destination.appendChild(style);
+    }
+  }, [records]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, currentView === "list" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, blockStyles.map(blockStyle => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: blockStyle.id
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: launchEditForm,
     value: blockStyle.id
-  }, blockStyle.title.rendered), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, blockStyle.meta.block_type)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+  }, (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_5__.decodeEntities)(blockStyle.title.rendered)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, blockStyle.meta.block_type)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     onClick: () => setCurrentView("new"),
     variant: "primary"
   }, "Add New Block Style")), currentView === "edit" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Edit Block Style"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -182,15 +203,12 @@ function EditBlockStyle({
     }
     const savedRecord = await saveEntityRecord("postType", "wpdev_block_style", args);
     if (savedRecord) {
-      alert("Saved!");
       const [transformed] = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.transformStyles)([{
         css: blockStyle.content
-      }, ".editor-styles-wrapper"]);
-      (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.unregisterBlockStyle)(blockStyle.meta.block_type, blockStyle.slug);
+      }], ".editor-styles-wrapper");
       (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.registerBlockStyle)(blockStyle.meta.block_type, {
         name: blockStyle.slug,
-        label: blockStyle.title,
-        inlineStyle: transformed.css
+        label: blockStyle.title
       });
       console.log(transformed);
       closeForm();
@@ -332,6 +350,16 @@ module.exports = window["wp"]["editPost"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/html-entities":
+/*!**************************************!*\
+  !*** external ["wp","htmlEntities"] ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["htmlEntities"];
 
 /***/ }),
 

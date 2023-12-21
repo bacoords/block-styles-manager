@@ -2,6 +2,7 @@ import { useState, useEffect } from "@wordpress/element";
 import { useEntityRecords } from "@wordpress/core-data";
 import { Button } from "@wordpress/components";
 import EditBlockStyle from "./EditBlockStyle";
+import { decodeEntities } from "@wordpress/html-entities";
 
 function BlockStyles() {
 	const [blockStyles, setBlockStyles] = useState([]);
@@ -13,7 +14,7 @@ function BlockStyles() {
 		id: 0,
 		title: "New Block Style",
 		slug: "new-block-style",
-		content: ".is-style-new-block-style { background-color: red; }",
+		content: "selector { background-color: red; }",
 		meta: {
 			block_type: "core/group",
 		},
@@ -44,6 +45,28 @@ function BlockStyles() {
 		}
 	}, [hasResolved]);
 
+	const filterSelector = (css, record) => {
+		return css.replace(/selector/g, `.is-style-${record.slug}`);
+	};
+
+	useEffect(() => {
+		if (records) {
+			// Add records CSS to iframe
+			let css = "";
+			records.forEach((record) => {
+				css += filterSelector(record.content.raw, record);
+			});
+			const style = document.createElement("style");
+			style.innerHTML = css;
+			style.id = "wpdev-block-styles";
+			let destination =
+				window.parent.document.querySelector('iframe[name="editor-canvas"]')
+					?.document.head ?? document.head;
+
+			destination.appendChild(style);
+		}
+	}, [records]);
+
 	return (
 		<div>
 			{currentView === "list" && (
@@ -52,7 +75,7 @@ function BlockStyles() {
 						{blockStyles.map((blockStyle) => (
 							<li key={blockStyle.id}>
 								<Button onClick={launchEditForm} value={blockStyle.id}>
-									{blockStyle.title.rendered}
+									{decodeEntities(blockStyle.title.rendered)}
 								</Button>
 								<code>{blockStyle.meta.block_type}</code>
 							</li>

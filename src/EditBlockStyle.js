@@ -10,7 +10,7 @@ import { useSelect, useDispatch } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 import { store as coreDataStore } from "@wordpress/core-data";
 import { transformStyles } from "@wordpress/block-editor";
-import { registerBlockStyle, unregisterBlockStyle } from "@wordpress/blocks";
+import { registerBlockStyle } from "@wordpress/blocks";
 
 function EditBlockStyle({ attributes, closeForm }) {
 	const [blockStyle, setBlockStyle] = useState(attributes);
@@ -18,7 +18,6 @@ function EditBlockStyle({ attributes, closeForm }) {
 	const [blockTypes, setBlockTypes] = useState(wp.blocks.getBlockTypes());
 
 	const { saveEntityRecord } = useDispatch(coreDataStore);
-
 	const saveBlockStyle = async () => {
 		const args = {
 			title: blockStyle.title,
@@ -39,17 +38,16 @@ function EditBlockStyle({ attributes, closeForm }) {
 			args,
 		);
 		if (savedRecord) {
-			alert("Saved!");
-			const [transformed] = transformStyles([
-				{ css: blockStyle.content },
+			const [transformed] = transformStyles(
+				[{ css: blockStyle.content }],
 				".editor-styles-wrapper",
-			]);
-			unregisterBlockStyle(blockStyle.meta.block_type, blockStyle.slug);
+			);
+
 			registerBlockStyle(blockStyle.meta.block_type, {
 				name: blockStyle.slug,
 				label: blockStyle.title,
-				inlineStyle: transformed.css,
 			});
+
 			console.log(transformed);
 			closeForm();
 		}
