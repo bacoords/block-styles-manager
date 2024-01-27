@@ -54,12 +54,20 @@ function register_block_styles_post_type() {
 
 	register_meta(
 		'post',
-		'block_type',
+		'block_types',
 		array(
 			'object_subtype' => 'wpdev_block_style',
-			'show_in_rest'   => true,
-			'type'           => 'string',
+			'show_in_rest'   => array(
+				'schema' => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string',
+					),
+				),
+			),
+			'type'           => 'array',
 			'single'         => true,
+			'default'        => array(),
 		)
 	);
 }
@@ -91,24 +99,27 @@ function register_block_styles() {
 		while ( $block_styles->have_posts() ) {
 			$block_styles->the_post();
 
-			$block_type = get_post_meta( get_the_ID(), 'block_type', true );
-			do_action( 'qm/debug', $block_type );
-			if ( ! $block_type ) {
+			$block_types = get_post_meta( get_the_ID(), 'block_types', true );
+			do_action( 'qm/debug', $block_types );
+			if ( ! $block_types ) {
 				continue;
 			}
 
-			register_block_style(
-				$block_type,
-				array(
-					'label'        => get_the_title(),
-					'name'         => get_post_field( 'post_name', get_the_ID() ),
-					'inline_style' => str_replace(
-						'selector',
-						'.is-style-' . get_post_field( 'post_name', get_the_ID() ),
-						get_the_content(),
+			foreach ( $block_types as $block_type ) {
+
+				register_block_style(
+					$block_type,
+					array(
+						'label'        => get_the_title(),
+						'name'         => get_post_field( 'post_name', get_the_ID() ),
+						'inline_style' => str_replace(
+							'selector',
+							'.is-style-' . get_post_field( 'post_name', get_the_ID() ),
+							get_the_content(),
+						),
 					),
-				),
-			);
+				);
+			}
 		}
 		wp_reset_postdata();
 	}

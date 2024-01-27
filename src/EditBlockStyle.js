@@ -26,9 +26,11 @@ function EditBlockStyle({ attributes, closeForm }) {
 			slug: blockStyle.slug,
 			status: "publish",
 			meta: {
-				block_type: blockStyle.meta.block_type,
+				block_types: blockStyle.meta.block_types ?? [],
 			},
 		};
+
+		console.log(args);
 
 		if (blockStyle.id) {
 			args.id = blockStyle.id;
@@ -43,10 +45,11 @@ function EditBlockStyle({ attributes, closeForm }) {
 				[{ css: blockStyle.content }],
 				".editor-styles-wrapper",
 			);
-
-			registerBlockStyle(blockStyle.meta.block_type, {
-				name: blockStyle.slug,
-				label: decodeEntities(blockStyle.title),
+			blockStyle.meta.block_types.forEach((blockType) => {
+				registerBlockStyle(blockType, {
+					name: blockStyle.slug,
+					label: decodeEntities(blockStyle.title),
+				});
 			});
 
 			console.log(transformed);
@@ -81,17 +84,18 @@ function EditBlockStyle({ attributes, closeForm }) {
 			/>
 			<SelectControl
 				label={__("Block Type")}
-				value={blockStyle.meta?.block_type ?? ""}
+				value={blockStyle.meta?.block_types ?? []}
 				options={blockTypes.map((blockType) => ({
 					label: blockType.title,
 					value: blockType.name,
 				}))}
-				onChange={(block_type) =>
+				multiple={true}
+				onChange={(block_types) =>
 					setBlockStyle({
 						...blockStyle,
 						meta: {
 							...blockStyle.meta,
-							block_type,
+							block_types: block_types,
 						},
 					})
 				}
