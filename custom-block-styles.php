@@ -28,6 +28,13 @@ function enqueue_editor_modifications() {
 		$asset_file['version'],
 		true
 	);
+
+	wp_enqueue_style(
+		'custom-block-styles-editor-modifications',
+		plugins_url( 'build/style-index.css', __FILE__ ),
+		array(),
+		$asset_file['version']
+	);
 }
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_editor_modifications' );
 
@@ -107,6 +114,11 @@ function register_block_styles() {
 
 			foreach ( $block_types as $block_type ) {
 
+				$selector = get_post_field( 'post_name', get_the_ID() );
+				if ( strpos( $selector, 'is-style-' ) === false ) {
+					$selector = 'is-style-' . $selector;
+				}
+
 				register_block_style(
 					$block_type,
 					array(
@@ -114,7 +126,7 @@ function register_block_styles() {
 						'name'         => get_post_field( 'post_name', get_the_ID() ),
 						'inline_style' => str_replace(
 							'selector',
-							'.is-style-' . get_post_field( 'post_name', get_the_ID() ),
+							'.' . $selector,
 							get_the_content(),
 						),
 					),

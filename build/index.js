@@ -2176,53 +2176,6 @@ function ViewTable({
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/icons/build-module/icon/index.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/icon/index.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * WordPress dependencies
- */
-
-
-/** @typedef {{icon: JSX.Element, size?: number} & import('@wordpress/primitives').SVGProps} IconProps */
-
-/**
- * Return an SVG icon.
- *
- * @param {IconProps}                                 props icon is the SVG component to render
- *                                                          size is a number specifiying the icon size in pixels
- *                                                          Other props will be passed to wrapped SVG component
- * @param {import('react').ForwardedRef<HTMLElement>} ref   The forwarded ref to the SVG element.
- *
- * @return {JSX.Element}  Icon component
- */
-function Icon({
-  icon,
-  size = 24,
-  ...props
-}, ref) {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(icon, {
-    width: size,
-    height: size,
-    ...props,
-    ref
-  });
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(Icon));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ "./node_modules/@wordpress/icons/build-module/library/block-table.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/block-table.js ***!
@@ -2380,10 +2333,10 @@ const chevronRight = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordp
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/edit.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/edit.js ***!
-  \********************************************************************/
+/***/ "./node_modules/@wordpress/icons/build-module/library/close-small.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/close-small.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2391,14 +2344,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _pencil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pencil */ "./node_modules/@wordpress/icons/build-module/library/pencil.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
 /**
- * Internal dependencies
+ * WordPress dependencies
  */
 
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_pencil__WEBPACK_IMPORTED_MODULE_0__["default"]);
-//# sourceMappingURL=edit.js.map
+const closeSmall = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
+  d: "M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"
+}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (closeSmall);
+//# sourceMappingURL=close-small.js.map
 
 /***/ }),
 
@@ -2557,37 +2519,6 @@ const moreVertical = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordp
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/pencil.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/pencil.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * WordPress dependencies
- */
-
-const pencil = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
-}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "m19 7-3-3-8.5 8.5-1 4 4-1L19 7Zm-7 11.5H5V20h7v-1.5Z"
-}));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (pencil);
-//# sourceMappingURL=pencil.js.map
-
-/***/ }),
-
 /***/ "./node_modules/@wordpress/icons/build-module/library/settings.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@wordpress/icons/build-module/library/settings.js ***!
@@ -2709,8 +2640,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _wordpress_dataviews__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/dataviews */ "./node_modules/@wordpress/dataviews/build-module/dataviews.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/edit.js");
 
 
 
@@ -2720,18 +2649,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function BlockStyles() {
+function BlockStyles({
+  currentView,
+  setCurrentView
+}) {
   const [blockStyles, setBlockStyles] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
-  const [currentView, setCurrentView] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)("");
   const [currentBlockStyle, setCurrentBlockStyle] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
-  const [modalIsOpen, setModalIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
 
   // @todo - grab the current block type as default here
   const newBlockStyle = {
     id: 0,
     title: "New Block Style",
-    slug: "new-block-style",
-    content: "selector { background-color: red; }",
+    slug: "is-style-new-block-style",
+    content: "selector {\n  opacity: 0.5;\n}",
     meta: {
       block_types: ["core/group"]
     }
@@ -2751,15 +2681,14 @@ function BlockStyles() {
     });
     setCurrentView("edit");
   };
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    if (hasResolved) {
-      setBlockStyles(records);
-      console.log(records);
-    }
-  }, [hasResolved]);
   const filterSelector = (css, record) => {
     return css.replace(/selector/g, `.is-style-${record.slug}`);
   };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (hasResolved) {
+      setBlockStyles(records);
+    }
+  }, [hasResolved]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (records) {
       var _window$parent$docume;
@@ -2775,26 +2704,11 @@ function BlockStyles() {
       destination.appendChild(style);
     }
   }, [records]);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => {
-      setCurrentView("list");
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, "list" === currentView && hasResolved && records.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_dataviews__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    data: records,
+    getItemId: item => {
+      return item.id;
     },
-    variant: "primary"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("All Block Styles")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => {
-      setCurrentView("new");
-    },
-    variant: "primary"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add New Block Style")), "list" === currentView && hasResolved && records.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Block Style"),
-    size: "large",
-    onRequestClose: () => {
-      setCurrentView("");
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_dataviews__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    data: records
-    // getItemId={function noRefCheck() {}}
-    ,
     onChangeView: function noRefCheck() {},
     fields: [{
       enableHiding: false,
@@ -2802,7 +2716,10 @@ function BlockStyles() {
       render: ({
         item
       }) => {
-        return (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_5__.decodeEntities)(item.title?.rendered) || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("(no title)");
+        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+          variant: "link",
+          onClick: () => launchEditForm(item.id)
+        }, (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_5__.decodeEntities)(item.title?.rendered) || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("(no title)")));
       },
       header: "Title",
       id: "title",
@@ -2841,32 +2758,21 @@ function BlockStyles() {
       filters: [],
       hiddenFields: []
     },
-    actions: [{
-      callback: items => {
-        launchEditForm(items[0].id);
-      },
-      id: "edit",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Edit"),
-      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"]
-      })
-    }, {
-      callback: () => {
-        // launchEditForm();
-      },
-      id: "delete",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Delete")
-    }],
+    actions: [
+      // {
+      // 	callback: () => {
+      // 		// launchEditForm();
+      // 	},
+      // 	id: "delete",
+      // 	label: __("Delete"),
+      // 	icon: <Icon icon={edit} />,
+      // },
+    ],
     paginationInfo: {
       totalPages: 1,
       totalItems: records.length
     }
-  })), ("edit" === currentView || "new" === currentView) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Block Style"),
-    onRequestClose: () => {
-      setCurrentView("");
-    }
-  }, currentView === "edit" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Edit Block Style")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), currentView === "edit" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Edit Block Style")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_4__["default"], {
     attributes: currentBlockStyle,
     closeForm: () => {
       setCurrentView("list");
@@ -2876,7 +2782,7 @@ function BlockStyles() {
     closeForm: () => {
       setCurrentView("list");
     }
-  }))));
+  })));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BlockStyles);
 
@@ -2911,6 +2817,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/html-entities */ "@wordpress/html-entities");
 /* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _token_multiselect_control__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./token-multiselect-control */ "./src/token-multiselect-control/index.js");
+
 
 
 
@@ -2935,7 +2843,7 @@ function EditBlockStyle({
     const args = {
       title: blockStyle.title,
       content: blockStyle.content,
-      slug: blockStyle.slug,
+      slug: blockStyle.slug.replace("is-style-", ""),
       status: "publish",
       meta: {
         block_types: (_blockStyle$meta$bloc = blockStyle.meta.block_types) !== null && _blockStyle$meta$bloc !== void 0 ? _blockStyle$meta$bloc : []
@@ -2952,7 +2860,7 @@ function EditBlockStyle({
       }], ".editor-styles-wrapper");
       blockStyle.meta.block_types.forEach(blockType => {
         (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.registerBlockStyle)(blockType, {
-          name: blockStyle.slug,
+          name: blockStyle.slug.replace("is-style-", ""),
           label: (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__.decodeEntities)(blockStyle.title)
         });
       });
@@ -2963,23 +2871,23 @@ function EditBlockStyle({
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
     gap: "3",
     direction: "column"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Label"),
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Name"),
     value: (_blockStyle$title = blockStyle.title) !== null && _blockStyle$title !== void 0 ? _blockStyle$title : "",
     onChange: title => setBlockStyle({
       ...blockStyle,
       title
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Class Name"),
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Class"),
     value: (_blockStyle$slug = blockStyle.slug) !== null && _blockStyle$slug !== void 0 ? _blockStyle$slug : "",
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("This is the class name that will be added to the block, and will be prefixed with is-style-"),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("This is the class name that will be added to the block, and will always be prefixed with .is-style-"),
     onChange: slug => setBlockStyle({
       ...blockStyle,
       slug
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Block Type"),
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_token_multiselect_control__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Supported Block Types"),
     value: (_blockStyle$meta$bloc2 = blockStyle.meta?.block_types) !== null && _blockStyle$meta$bloc2 !== void 0 ? _blockStyle$meta$bloc2 : [],
     options: blockTypes.map(blockType => ({
       label: blockType.title,
@@ -3001,12 +2909,1009 @@ function EditBlockStyle({
       ...blockStyle,
       content
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     variant: "primary",
     onClick: saveBlockStyle
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Save Block Style")));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Save Block Style"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    variant: "danger",
+    onClick: closeForm
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Cancel")))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditBlockStyle);
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
+/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/styles.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _BlockStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BlockStyles */ "./src/BlockStyles.js");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+
+
+
+
+
+
+
+
+
+
+const PluginBlockSettingsMenuGroupTest = () => {
+  const [modalOpen, setModalOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+  const [currentView, setCurrentView] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)("list");
+  const AddNewButton = () => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: () => {
+        console.log("clicked");
+        setCurrentView("new");
+      },
+      variant: "primary"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Add New Block Style"));
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockSettingsMenuControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.MenuItem, {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
+    onClick: () => setModalOpen(true),
+    "aria-expanded": modalOpen,
+    "aria-haspopup": "dialog"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Block Styles")), modalOpen && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Block Style Manager"),
+    size: "large",
+    headerActions: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(AddNewButton, null),
+    isFullScreen: true,
+    overlayClassName: "wpdev-block-style-manager",
+    onRequestClose: () => {
+      setCurrentView("list");
+      setModalOpen(false);
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BlockStyles__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    currentView: currentView,
+    setCurrentView: setCurrentView
+  })));
+};
+(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)("block-settings-menu-group-test", {
+  render: PluginBlockSettingsMenuGroupTest
+});
+
+// @todo Also make this context aware of the block type?
+
+_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_6___default()({
+  path: "/wp/v2/wpdev_block_style"
+}).then(response => {
+  response.forEach(blockStyle => {
+    console.log(blockStyle);
+    wp.blocks.registerBlockStyle(blockStyle.meta.block_type, {
+      name: blockStyle.slug,
+      label: blockStyle.title.rendered,
+      inlineStyle: blockStyle.content.raw
+    });
+  });
+});
+
+/***/ }),
+
+/***/ "./src/token-multiselect-control/index.js":
+/*!************************************************!*\
+  !*** ./src/token-multiselect-control/index.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/keycodes */ "@wordpress/keycodes");
+/* harmony import */ var _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_is_shallow_equal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/is-shallow-equal */ "@wordpress/is-shallow-equal");
+/* harmony import */ var _wordpress_is_shallow_equal__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_is_shallow_equal__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _token__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./token */ "./src/token-multiselect-control/token.js");
+/* harmony import */ var _token_input__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./token-input */ "./src/token-multiselect-control/token-input.js");
+/* harmony import */ var _suggestions_list__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./suggestions-list */ "./src/token-multiselect-control/suggestions-list.js");
+
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const initialState = {
+  incompleteTokenValue: '',
+  inputOffsetFromEnd: 0,
+  isActive: false,
+  isExpanded: false,
+  selectedSuggestionIndex: -1,
+  selectedSuggestionScroll: false
+};
+class TokenMultiSelectControl extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
+  constructor() {
+    super(...arguments);
+    this.state = initialState;
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.deleteTokenBeforeInput = this.deleteTokenBeforeInput.bind(this);
+    this.deleteTokenAfterInput = this.deleteTokenAfterInput.bind(this);
+    this.addCurrentToken = this.addCurrentToken.bind(this);
+    this.onContainerTouched = this.onContainerTouched.bind(this);
+    this.renderToken = this.renderToken.bind(this);
+    this.onTokenClickRemove = this.onTokenClickRemove.bind(this);
+    this.onSuggestionHovered = this.onSuggestionHovered.bind(this);
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.bindInput = this.bindInput.bind(this);
+    this.bindTokensAndInput = this.bindTokensAndInput.bind(this);
+    this.updateSuggestions = this.updateSuggestions.bind(this);
+    this.addNewTokens = this.addNewTokens.bind(this);
+    this.getValueFromLabel = this.getValueFromLabel.bind(this);
+    this.getLabelFromValue = this.getLabelFromValue.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    // Make sure to focus the input when the isActive state is true.
+    if (this.state.isActive && !this.input.hasFocus()) {
+      this.input.focus();
+    }
+    const {
+      options,
+      value
+    } = this.props;
+    const suggestionsDidUpdate = !_wordpress_is_shallow_equal__WEBPACK_IMPORTED_MODULE_7___default()(options, prevProps.options);
+    if (suggestionsDidUpdate || value !== prevProps.value) {
+      this.updateSuggestions(suggestionsDidUpdate);
+    }
+  }
+  static getDerivedStateFromProps(props, state) {
+    if (!props.disabled || !state.isActive) {
+      return null;
+    }
+    return {
+      isActive: false,
+      incompleteTokenValue: ''
+    };
+  }
+  bindInput(ref) {
+    this.input = ref;
+  }
+  bindTokensAndInput(ref) {
+    this.tokensAndInput = ref;
+  }
+  onFocus(event) {
+    // If focus is on the input or on the container, set the isActive state to true.
+    if (this.input.hasFocus() || event.target === this.tokensAndInput) {
+      this.setState({
+        isActive: true /* , isExpanded: true */
+      });
+    } else {
+      /*
+       * Otherwise, focus is on one of the token "remove" buttons and we
+       * set the isActive state to false to prevent the input to be
+       * re-focused, see componentDidUpdate().
+       */
+      this.setState({
+        isActive: false
+      });
+    }
+    if ('function' === typeof this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+  }
+  onClick(event) {
+    // If focus is on the input or on the container, set the isActive state to true.
+    // don't open if we clicked a suggestion
+    if (!event.target.classList.contains('components-form-token-field__suggestion')) {
+      this.setState({
+        isExpanded: true,
+        isActive: true
+      });
+    }
+  }
+  onBlur() {
+    if (this.inputHasValidToken()) {
+      this.setState({
+        isActive: false,
+        isExpanded: false
+      });
+    } else {
+      this.setState(initialState);
+    }
+  }
+  onKeyDown(event) {
+    let preventDefault = false;
+    switch (event.keyCode) {
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.BACKSPACE:
+        preventDefault = this.handleDeleteKey(this.deleteTokenBeforeInput);
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.ENTER:
+        preventDefault = this.addCurrentToken();
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.LEFT:
+        preventDefault = this.handleLeftArrowKey();
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.UP:
+        preventDefault = this.handleUpArrowKey();
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.RIGHT:
+        preventDefault = this.handleRightArrowKey();
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.DOWN:
+        preventDefault = this.handleDownArrowKey();
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.DELETE:
+        preventDefault = this.handleDeleteKey(this.deleteTokenAfterInput);
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.SPACE:
+        if (this.props.tokenizeOnSpace) {
+          preventDefault = this.addCurrentToken();
+        }
+        break;
+      case _wordpress_keycodes__WEBPACK_IMPORTED_MODULE_6__.ESCAPE:
+        preventDefault = this.handleEscapeKey(event);
+        event.stopPropagation();
+        break;
+      default:
+        break;
+    }
+    if (preventDefault) {
+      event.preventDefault();
+    }
+  }
+  onKeyPress(event) {
+    if (!this.state.isExpanded) {
+      this.setState({
+        isExpanded: true
+      });
+    }
+  }
+  onContainerTouched(event) {
+    // Prevent clicking/touching the tokensAndInput container from blurring
+    // the input and adding the current token.
+    if (event.target === this.tokensAndInput && this.state.isActive) {
+      event.preventDefault();
+    }
+    //this.setState( { isExpanded: true } );
+  }
+  onTokenClickRemove(event) {
+    this.deleteToken(event.value);
+    this.input.focus();
+  }
+  onSuggestionHovered(suggestion) {
+    const index = this.getMatchingSuggestions().indexOf(suggestion);
+    if (index >= 0) {
+      this.setState({
+        selectedSuggestionIndex: index,
+        selectedSuggestionScroll: false
+      });
+    }
+  }
+  onSuggestionSelected(suggestion) {
+    this.addNewToken(suggestion);
+  }
+  onInputChange(event) {
+    const tokenValue = event.value;
+    this.setState({
+      incompleteTokenValue: tokenValue
+    }, this.updateSuggestions);
+    this.props.onInputChange(tokenValue);
+  }
+  handleDeleteKey(deleteToken) {
+    let preventDefault = false;
+    if (this.input.hasFocus() && this.isInputEmpty()) {
+      deleteToken();
+      preventDefault = true;
+    }
+    return preventDefault;
+  }
+  handleLeftArrowKey() {
+    let preventDefault = false;
+    if (this.isInputEmpty()) {
+      this.moveInputBeforePreviousToken();
+      preventDefault = true;
+    }
+    return preventDefault;
+  }
+  handleRightArrowKey() {
+    let preventDefault = false;
+    if (this.isInputEmpty()) {
+      this.moveInputAfterNextToken();
+      preventDefault = true;
+    }
+    return preventDefault;
+  }
+  getOptionsLabels(options) {
+    return options.map(option => {
+      return option.label;
+    });
+  }
+  getValueFromLabel(optionLabel) {
+    const foundOption = this.props.options.find(option => option.label.toLocaleLowerCase() === optionLabel.toLocaleLowerCase());
+    if (foundOption) {
+      return foundOption.value;
+    }
+    return null;
+  }
+  getLabelFromValue(optionValue) {
+    const foundOption = this.props.options.find(option => option.value === optionValue);
+    if (foundOption) {
+      return foundOption.label;
+    }
+    return null;
+  }
+  getOptionsValues(options) {
+    return options.map(option => {
+      return option.value;
+    });
+  }
+  handleUpArrowKey() {
+    this.setState((state, props) => ({
+      selectedSuggestionIndex: (state.selectedSuggestionIndex === 0 ? this.getMatchingSuggestions(state.incompleteTokenValue, this.getOptionsLabels(props.options), props.value, props.maxSuggestions, props.saveTransform).length : state.selectedSuggestionIndex) - 1,
+      selectedSuggestionScroll: true
+    }));
+    return true; // preventDefault
+  }
+  handleDownArrowKey() {
+    this.setState((state, props) => ({
+      selectedSuggestionIndex: (state.selectedSuggestionIndex + 1) % this.getMatchingSuggestions(state.incompleteTokenValue, this.getOptionsLabels(props.options), props.value, props.maxSuggestions, props.saveTransform).length,
+      selectedSuggestionScroll: true,
+      isExpanded: true
+    }));
+    return true; // preventDefault
+  }
+  handleEscapeKey(event) {
+    this.setState({
+      incompleteTokenValue: event.target.value,
+      isExpanded: false,
+      selectedSuggestionIndex: -1,
+      selectedSuggestionScroll: false
+    });
+    return true; // preventDefault
+  }
+  moveInputToIndex(index) {
+    this.setState((state, props) => ({
+      inputOffsetFromEnd: props.value.length - Math.max(index, -1) - 1
+    }));
+  }
+  moveInputBeforePreviousToken() {
+    this.setState((state, props) => ({
+      inputOffsetFromEnd: Math.min(state.inputOffsetFromEnd + 1, props.value.length)
+    }));
+  }
+  moveInputAfterNextToken() {
+    this.setState(state => ({
+      inputOffsetFromEnd: Math.max(state.inputOffsetFromEnd - 1, 0)
+    }));
+  }
+  deleteTokenBeforeInput() {
+    const index = this.getIndexOfInput() - 1;
+    if (index > -1) {
+      this.deleteToken(this.props.value[index]);
+    }
+  }
+  deleteTokenAfterInput() {
+    const index = this.getIndexOfInput();
+    if (index < this.props.value.length) {
+      this.deleteToken(this.props.value[index]);
+      // update input offset since it's the offset from the last token
+      this.moveInputToIndex(index);
+    }
+  }
+  addCurrentToken() {
+    let preventDefault = false;
+    const selectedSuggestion = this.getSelectedSuggestion();
+    if (selectedSuggestion) {
+      this.addNewToken(selectedSuggestion);
+      preventDefault = true;
+    } else if (this.inputHasValidToken()) {
+      this.addNewToken(this.state.incompleteTokenValue);
+      preventDefault = true;
+    }
+    return preventDefault;
+  }
+  addNewTokens(tokens) {
+    const tokensToAdd = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.uniq)(tokens.map(this.props.saveTransform).filter(Boolean).filter(token => !this.valueContainsToken(token)));
+    if (tokensToAdd.length > 0) {
+      const tokenValuesToAdd = tokensToAdd.map(tokenLabel => {
+        return this.getValueFromLabel(tokenLabel);
+      });
+      let newValue = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.clone)(this.props.value);
+      newValue.splice.apply(newValue, [this.getIndexOfInput(), 0].concat(tokenValuesToAdd));
+      // now remove duplicates if required
+      newValue = [...new Set(newValue)];
+      this.props.onChange(newValue);
+    }
+  }
+  addNewToken(token) {
+    this.addNewTokens([token]);
+    this.props.speak(this.props.messages.added, 'assertive');
+    this.setState({
+      incompleteTokenValue: '',
+      selectedSuggestionIndex: -1,
+      selectedSuggestionScroll: false,
+      isExpanded: false
+    });
+    if (this.state.isActive) {
+      this.input.focus();
+    }
+  }
+  deleteToken(token) {
+    const newTokens = this.props.value.filter(item => {
+      return this.getTokenValue(item) !== this.getTokenValue(token);
+    });
+    this.props.onChange(newTokens);
+    this.props.speak(this.props.messages.removed, 'assertive');
+  }
+  getTokenValue(token) {
+    if (token && token.value) {
+      return token.value;
+    }
+    return token;
+  }
+  getMatchingSuggestions(searchValue = this.state.incompleteTokenValue, suggestions = this.getOptionsLabels(this.props.options), value = this.props.value, maxSuggestions = this.props.maxSuggestions, saveTransform = this.props.saveTransform) {
+    let match = saveTransform(searchValue);
+    const startsWithMatch = [];
+    const containsMatch = [];
+    const activeLabels = value.map(optionValue => {
+      return this.getLabelFromValue(optionValue);
+    });
+    if (match.length > 0) {
+      match = match.toLocaleLowerCase();
+      (0,lodash__WEBPACK_IMPORTED_MODULE_1__.each)(suggestions, suggestion => {
+        const index = suggestion.toLocaleLowerCase().indexOf(match);
+        if (value.indexOf(suggestion) === -1) {
+          if (index === 0) {
+            startsWithMatch.push(suggestion);
+          } else if (index > 0) {
+            containsMatch.push(suggestion);
+          }
+        }
+      });
+      suggestions = startsWithMatch.concat(containsMatch);
+    }
+    // remove selected labels from suggestions
+    suggestions = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.difference)(suggestions, activeLabels);
+    return (0,lodash__WEBPACK_IMPORTED_MODULE_1__.take)(suggestions, maxSuggestions);
+  }
+  getSelectedSuggestion() {
+    if (this.state.selectedSuggestionIndex !== -1) {
+      return this.getMatchingSuggestions()[this.state.selectedSuggestionIndex];
+    }
+  }
+  valueContainsToken(token) {
+    return (0,lodash__WEBPACK_IMPORTED_MODULE_1__.some)(this.props.value, item => {
+      return this.getTokenValue(token) === this.getTokenValue(item);
+    });
+  }
+  getIndexOfInput() {
+    return this.props.value.length - this.state.inputOffsetFromEnd;
+  }
+  isInputEmpty() {
+    return this.state.incompleteTokenValue.length === 0;
+  }
+  inputHasValidToken() {
+    const incompleteTokenValue = this.state.incompleteTokenValue;
+    let foundMatch = false;
+    if (incompleteTokenValue && incompleteTokenValue.length > 0) {
+      this.props.options.forEach(option => {
+        if (option.label.trim().toLocaleLowerCase() === incompleteTokenValue.trim().toLocaleLowerCase()) {
+          foundMatch = true;
+          // return true; //not working?
+        }
+      });
+    }
+    return foundMatch;
+  }
+  updateSuggestions(resetSelectedSuggestion = true) {
+    const {
+      incompleteTokenValue
+    } = this.state;
+    const inputHasMinimumChars = true; //incompleteTokenValue.trim().length > 1;
+    const matchingSuggestions = this.getMatchingSuggestions(incompleteTokenValue);
+    const hasMatchingSuggestions = matchingSuggestions.length > 0;
+    const newState = {
+      // isExpanded: inputHasMinimumChars && hasMatchingSuggestions,
+    };
+    if (resetSelectedSuggestion) {
+      newState.selectedSuggestionIndex = -1;
+      newState.selectedSuggestionScroll = false;
+    }
+    this.setState(newState);
+    if (inputHasMinimumChars) {
+      const {
+        debouncedSpeak
+      } = this.props;
+      const message = hasMatchingSuggestions ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.sprintf)( /* translators: %d: number of results. */
+      (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__._n)('%d result found, use up and down arrow keys to navigate.', '%d results found, use up and down arrow keys to navigate.', matchingSuggestions.length), matchingSuggestions.length) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('No results.');
+      debouncedSpeak(message, 'assertive');
+    }
+  }
+  renderTokensAndInput() {
+    const components = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.map)(this.props.value, this.renderToken);
+    components.splice(this.getIndexOfInput(), 0, this.renderInput());
+    return components;
+  }
+  renderToken(token, index, tokens) {
+    const value = this.getTokenValue(token);
+    const label = this.getLabelFromValue(value); //todo - optimize
+    const status = token.status ? token.status : undefined;
+    const termPosition = index + 1;
+    const termsCount = tokens.length;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_token__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      key: 'token-' + value,
+      value: value,
+      label: label,
+      status: status,
+      title: token.title,
+      displayTransform: this.props.displayTransform,
+      onClickRemove: this.onTokenClickRemove,
+      isBorderless: token.isBorderless || this.props.isBorderless,
+      onMouseEnter: token.onMouseEnter,
+      onMouseLeave: token.onMouseLeave,
+      disabled: 'error' !== status && this.props.disabled,
+      messages: this.props.messages,
+      termsCount: termsCount,
+      termPosition: termPosition
+    });
+  }
+  renderInput() {
+    const {
+      autoCapitalize,
+      autoComplete,
+      maxLength,
+      value,
+      instanceId
+    } = this.props;
+    let props = {
+      instanceId,
+      autoCapitalize,
+      autoComplete,
+      ref: this.bindInput,
+      key: 'input',
+      disabled: this.props.disabled,
+      value: this.state.incompleteTokenValue,
+      onBlur: this.onBlur,
+      isExpanded: this.state.isExpanded,
+      selectedSuggestionIndex: this.state.selectedSuggestionIndex
+    };
+    if (!(maxLength && value.length >= maxLength)) {
+      props = {
+        ...props,
+        onChange: this.onInputChange
+      };
+    }
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_token_input__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      ...props
+    });
+  }
+  render() {
+    const {
+      disabled,
+      label = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Add item'),
+      instanceId,
+      className
+    } = this.props;
+    const {
+      isExpanded
+    } = this.state;
+    const classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, 'components-form-token-field__input-container', {
+      'is-active': this.state.isActive,
+      'is-disabled': disabled
+    });
+    let tokenFieldProps = {
+      className: 'components-form-token-field',
+      tabIndex: '-1'
+    };
+    const matchingSuggestions = this.getMatchingSuggestions();
+    if (!disabled) {
+      tokenFieldProps = Object.assign({}, tokenFieldProps, {
+        onKeyDown: this.onKeyDown,
+        onKeyPress: this.onKeyPress,
+        onFocus: this.onFocus,
+        onClick: this.onClick
+      });
+    }
+
+    // Disable reason: There is no appropriate role which describes the
+    // input container intended accessible usability.
+    // TODO: Refactor click detection to use blur to stop propagation.
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...tokenFieldProps
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+      htmlFor: `components-form-token-input-${instanceId}`,
+      className: "components-form-token-field__label"
+    }, label), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ref: this.bindTokensAndInput,
+      className: classes,
+      tabIndex: "-1",
+      onMouseDown: this.onContainerTouched,
+      onTouchStart: this.onContainerTouched
+    }, this.renderTokensAndInput(), isExpanded && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_suggestions_list__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      instanceId: instanceId,
+      match: this.props.saveTransform(this.state.incompleteTokenValue),
+      displayTransform: this.props.displayTransform,
+      suggestions: matchingSuggestions,
+      selectedIndex: this.state.selectedSuggestionIndex,
+      scrollIntoView: this.state.selectedSuggestionScroll,
+      onHover: this.onSuggestionHovered,
+      onSelect: this.onSuggestionSelected
+    })));
+    /* eslint-enable jsx-a11y/no-static-element-interactions */
+  }
+}
+TokenMultiSelectControl.defaultProps = {
+  options: Object.freeze([]),
+  maxSuggestions: 100,
+  value: Object.freeze([]),
+  displayTransform: lodash__WEBPACK_IMPORTED_MODULE_1__.identity,
+  saveTransform: token => token ? token.trim() : '',
+  onChange: () => {},
+  onInputChange: () => {},
+  isBorderless: false,
+  disabled: false,
+  tokenizeOnSpace: false,
+  messages: {
+    added: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Item added.'),
+    removed: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Item removed.'),
+    remove: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Remove item')
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.withSpokenMessages)((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.withInstanceId)(TokenMultiSelectControl)));
+
+/***/ }),
+
+/***/ "./src/token-multiselect-control/suggestions-list.js":
+/*!***********************************************************!*\
+  !*** ./src/token-multiselect-control/suggestions-list.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var dom_scroll_into_view__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dom-scroll-into-view */ "./node_modules/dom-scroll-into-view/lib/index.js");
+/* harmony import */ var dom_scroll_into_view__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dom_scroll_into_view__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__);
+
+/**
+ * External dependencies
+ */
+
+
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+class SuggestionsList extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
+  constructor() {
+    super(...arguments);
+    this.handleMouseDown = this.handleMouseDown.bind(this);
+    this.bindList = this.bindList.bind(this);
+  }
+  componentDidUpdate() {
+    // only have to worry about scrolling selected suggestion into view
+    // when already expanded
+    if (this.props.selectedIndex > -1 && this.props.scrollIntoView) {
+      this.scrollingIntoView = true;
+      dom_scroll_into_view__WEBPACK_IMPORTED_MODULE_2___default()(this.list.children[this.props.selectedIndex], this.list, {
+        onlyScrollIfNeeded: true
+      });
+      this.props.setTimeout(() => {
+        this.scrollingIntoView = false;
+      }, 100);
+    }
+  }
+  bindList(ref) {
+    this.list = ref;
+  }
+  handleHover(suggestion) {
+    return () => {
+      if (!this.scrollingIntoView) {
+        this.props.onHover(suggestion);
+      }
+    };
+  }
+  handleClick(suggestion) {
+    return () => {
+      this.props.onSelect(suggestion);
+    };
+  }
+  handleMouseDown(e) {
+    // By preventing default here, we will not lose focus of <input> when clicking a suggestion
+    e.preventDefault();
+  }
+  computeSuggestionMatch(suggestion) {
+    const match = this.props.displayTransform(this.props.match || '').toLocaleLowerCase();
+    if (match.length === 0) {
+      return null;
+    }
+    suggestion = this.props.displayTransform(suggestion);
+    const indexOfMatch = suggestion.toLocaleLowerCase().indexOf(match);
+    return {
+      suggestionBeforeMatch: suggestion.substring(0, indexOfMatch),
+      suggestionMatch: suggestion.substring(indexOfMatch, indexOfMatch + match.length),
+      suggestionAfterMatch: suggestion.substring(indexOfMatch + match.length)
+    };
+  }
+  render() {
+    // We set `tabIndex` here because otherwise Firefox sets focus on this
+    // div when tabbing off of the input in `TokenField` -- not really sure
+    // why, since usually a div isn't focusable by default
+    // TODO does this still apply now that it's a <ul> and not a <div>?
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+      ref: this.bindList,
+      className: "components-form-token-field__suggestions-list",
+      id: `components-form-token-suggestions-${this.props.instanceId}`,
+      role: "listbox"
+    }, (0,lodash__WEBPACK_IMPORTED_MODULE_1__.map)(this.props.suggestions, (suggestion, index) => {
+      const match = this.computeSuggestionMatch(suggestion);
+      const classeName = classnames__WEBPACK_IMPORTED_MODULE_3___default()('components-form-token-field__suggestion', {
+        'is-selected': index === this.props.selectedIndex
+      });
+
+      /* eslint-disable jsx-a11y/click-events-have-key-events */
+      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+        id: `components-form-token-suggestions-${this.props.instanceId}-${index}`,
+        role: "option",
+        className: classeName,
+        key: this.props.displayTransform(suggestion),
+        onMouseDown: this.handleMouseDown,
+        onClick: this.handleClick(suggestion),
+        onMouseEnter: this.handleHover(suggestion),
+        "aria-selected": index === this.props.selectedIndex
+      }, match ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+        "aria-label": this.props.displayTransform(suggestion)
+      }, match.suggestionBeforeMatch, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", {
+        className: "components-form-token-field__suggestion-match"
+      }, match.suggestionMatch), match.suggestionAfterMatch) : this.props.displayTransform(suggestion));
+      /* eslint-enable jsx-a11y/click-events-have-key-events */
+    }));
+  }
+}
+SuggestionsList.defaultProps = {
+  match: '',
+  onHover: () => {},
+  onSelect: () => {},
+  suggestions: Object.freeze([])
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.withSafeTimeout)(SuggestionsList));
+
+/***/ }),
+
+/***/ "./src/token-multiselect-control/token-input.js":
+/*!******************************************************!*\
+  !*** ./src/token-multiselect-control/token-input.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+
+/**
+ * External dependencies
+ */
+
+
+/**
+ * WordPress dependencies
+ */
+
+class TokenInput extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Component {
+  constructor() {
+    super(...arguments);
+    this.onChange = this.onChange.bind(this);
+    this.bindInput = this.bindInput.bind(this);
+  }
+  focus() {
+    this.input.focus();
+  }
+  hasFocus() {
+    return this.input === this.input.ownerDocument.activeElement;
+  }
+  bindInput(ref) {
+    this.input = ref;
+  }
+  onChange(event) {
+    this.props.onChange({
+      value: event.target.value
+    });
+  }
+  render() {
+    const {
+      value,
+      isExpanded,
+      instanceId,
+      selectedSuggestionIndex,
+      className,
+      ...props
+    } = this.props;
+    const size = value ? value.length + 1 : 0;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      ref: this.bindInput,
+      id: `components-form-token-input-${instanceId}`,
+      type: "text",
+      ...props,
+      value: value || '',
+      onChange: this.onChange,
+      size: size,
+      className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, 'components-form-token-field__input'),
+      autoComplete: "off",
+      role: "combobox",
+      "aria-expanded": isExpanded,
+      "aria-autocomplete": "list",
+      "aria-owns": isExpanded ? `components-form-token-suggestions-${instanceId}` : undefined,
+      "aria-activedescendant": selectedSuggestionIndex !== -1 ? `components-form-token-suggestions-${instanceId}-${selectedSuggestionIndex}` : undefined,
+      "aria-describedby": `components-form-token-suggestions-howto-${instanceId}`
+    });
+  }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TokenInput);
+
+/***/ }),
+
+/***/ "./src/token-multiselect-control/token.js":
+/*!************************************************!*\
+  !*** ./src/token-multiselect-control/token.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Token)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/close-small.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+function Token({
+  value,
+  label,
+  status,
+  title,
+  displayTransform,
+  isBorderless = false,
+  disabled = false,
+  onClickRemove = lodash__WEBPACK_IMPORTED_MODULE_2__.noop,
+  onMouseEnter,
+  onMouseLeave,
+  messages,
+  termPosition,
+  termsCount
+}) {
+  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.useInstanceId)(Token);
+  const tokenClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()('components-form-token-field__token', {
+    'is-error': 'error' === status,
+    'is-success': 'success' === status,
+    'is-validating': 'validating' === status,
+    'is-borderless': isBorderless,
+    'is-disabled': disabled
+  });
+  const onClick = () => onClickRemove({
+    value
+  });
+  const transformedValue = displayTransform(label);
+  const termPositionAndCount = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.sprintf)( /* translators: 1: term name, 2: term position in a set of terms, 3: total term set count. */
+  (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('%1$s (%2$s of %3$s)'), transformedValue, termPosition, termsCount);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: tokenClasses,
+    onMouseEnter: onMouseEnter,
+    onMouseLeave: onMouseLeave,
+    title: title
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "components-form-token-field__token-text",
+    id: `components-form-token-field__token-text-${instanceId}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.VisuallyHidden, {
+    as: "span"
+  }, termPositionAndCount), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    "aria-hidden": "true"
+  }, transformedValue)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    className: "components-form-token-field__remove-token",
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"],
+    onClick: !disabled && onClick,
+    label: messages.remove,
+    "aria-describedby": `components-form-token-field__token-text-${instanceId}`
+  }));
+}
 
 /***/ }),
 
@@ -3079,6 +3984,620 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 
+/***/ "./node_modules/dom-scroll-into-view/lib/dom-scroll-into-view.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/dom-scroll-into-view/lib/dom-scroll-into-view.js ***!
+  \***********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var util = __webpack_require__(/*! ./util */ "./node_modules/dom-scroll-into-view/lib/util.js");
+
+function scrollIntoView(elem, container, config) {
+  config = config || {};
+  // document 归一化到 window
+  if (container.nodeType === 9) {
+    container = util.getWindow(container);
+  }
+
+  var allowHorizontalScroll = config.allowHorizontalScroll;
+  var onlyScrollIfNeeded = config.onlyScrollIfNeeded;
+  var alignWithTop = config.alignWithTop;
+  var alignWithLeft = config.alignWithLeft;
+  var offsetTop = config.offsetTop || 0;
+  var offsetLeft = config.offsetLeft || 0;
+  var offsetBottom = config.offsetBottom || 0;
+  var offsetRight = config.offsetRight || 0;
+
+  allowHorizontalScroll = allowHorizontalScroll === undefined ? true : allowHorizontalScroll;
+
+  var isWin = util.isWindow(container);
+  var elemOffset = util.offset(elem);
+  var eh = util.outerHeight(elem);
+  var ew = util.outerWidth(elem);
+  var containerOffset = undefined;
+  var ch = undefined;
+  var cw = undefined;
+  var containerScroll = undefined;
+  var diffTop = undefined;
+  var diffBottom = undefined;
+  var win = undefined;
+  var winScroll = undefined;
+  var ww = undefined;
+  var wh = undefined;
+
+  if (isWin) {
+    win = container;
+    wh = util.height(win);
+    ww = util.width(win);
+    winScroll = {
+      left: util.scrollLeft(win),
+      top: util.scrollTop(win)
+    };
+    // elem 相对 container 可视视窗的距离
+    diffTop = {
+      left: elemOffset.left - winScroll.left - offsetLeft,
+      top: elemOffset.top - winScroll.top - offsetTop
+    };
+    diffBottom = {
+      left: elemOffset.left + ew - (winScroll.left + ww) + offsetRight,
+      top: elemOffset.top + eh - (winScroll.top + wh) + offsetBottom
+    };
+    containerScroll = winScroll;
+  } else {
+    containerOffset = util.offset(container);
+    ch = container.clientHeight;
+    cw = container.clientWidth;
+    containerScroll = {
+      left: container.scrollLeft,
+      top: container.scrollTop
+    };
+    // elem 相对 container 可视视窗的距离
+    // 注意边框, offset 是边框到根节点
+    diffTop = {
+      left: elemOffset.left - (containerOffset.left + (parseFloat(util.css(container, 'borderLeftWidth')) || 0)) - offsetLeft,
+      top: elemOffset.top - (containerOffset.top + (parseFloat(util.css(container, 'borderTopWidth')) || 0)) - offsetTop
+    };
+    diffBottom = {
+      left: elemOffset.left + ew - (containerOffset.left + cw + (parseFloat(util.css(container, 'borderRightWidth')) || 0)) + offsetRight,
+      top: elemOffset.top + eh - (containerOffset.top + ch + (parseFloat(util.css(container, 'borderBottomWidth')) || 0)) + offsetBottom
+    };
+  }
+
+  if (diffTop.top < 0 || diffBottom.top > 0) {
+    // 强制向上
+    if (alignWithTop === true) {
+      util.scrollTop(container, containerScroll.top + diffTop.top);
+    } else if (alignWithTop === false) {
+      util.scrollTop(container, containerScroll.top + diffBottom.top);
+    } else {
+      // 自动调整
+      if (diffTop.top < 0) {
+        util.scrollTop(container, containerScroll.top + diffTop.top);
+      } else {
+        util.scrollTop(container, containerScroll.top + diffBottom.top);
+      }
+    }
+  } else {
+    if (!onlyScrollIfNeeded) {
+      alignWithTop = alignWithTop === undefined ? true : !!alignWithTop;
+      if (alignWithTop) {
+        util.scrollTop(container, containerScroll.top + diffTop.top);
+      } else {
+        util.scrollTop(container, containerScroll.top + diffBottom.top);
+      }
+    }
+  }
+
+  if (allowHorizontalScroll) {
+    if (diffTop.left < 0 || diffBottom.left > 0) {
+      // 强制向上
+      if (alignWithLeft === true) {
+        util.scrollLeft(container, containerScroll.left + diffTop.left);
+      } else if (alignWithLeft === false) {
+        util.scrollLeft(container, containerScroll.left + diffBottom.left);
+      } else {
+        // 自动调整
+        if (diffTop.left < 0) {
+          util.scrollLeft(container, containerScroll.left + diffTop.left);
+        } else {
+          util.scrollLeft(container, containerScroll.left + diffBottom.left);
+        }
+      }
+    } else {
+      if (!onlyScrollIfNeeded) {
+        alignWithLeft = alignWithLeft === undefined ? true : !!alignWithLeft;
+        if (alignWithLeft) {
+          util.scrollLeft(container, containerScroll.left + diffTop.left);
+        } else {
+          util.scrollLeft(container, containerScroll.left + diffBottom.left);
+        }
+      }
+    }
+  }
+}
+
+module.exports = scrollIntoView;
+
+/***/ }),
+
+/***/ "./node_modules/dom-scroll-into-view/lib/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/dom-scroll-into-view/lib/index.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+module.exports = __webpack_require__(/*! ./dom-scroll-into-view */ "./node_modules/dom-scroll-into-view/lib/dom-scroll-into-view.js");
+
+/***/ }),
+
+/***/ "./node_modules/dom-scroll-into-view/lib/util.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/dom-scroll-into-view/lib/util.js ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var RE_NUM = /[\-+]?(?:\d*\.|)\d+(?:[eE][\-+]?\d+|)/.source;
+
+function getClientPosition(elem) {
+  var box = undefined;
+  var x = undefined;
+  var y = undefined;
+  var doc = elem.ownerDocument;
+  var body = doc.body;
+  var docElem = doc && doc.documentElement;
+  // 根据 GBS 最新数据，A-Grade Browsers 都已支持 getBoundingClientRect 方法，不用再考虑传统的实现方式
+  box = elem.getBoundingClientRect();
+
+  // 注：jQuery 还考虑减去 docElem.clientLeft/clientTop
+  // 但测试发现，这样反而会导致当 html 和 body 有边距/边框样式时，获取的值不正确
+  // 此外，ie6 会忽略 html 的 margin 值，幸运地是没有谁会去设置 html 的 margin
+
+  x = box.left;
+  y = box.top;
+
+  // In IE, most of the time, 2 extra pixels are added to the top and left
+  // due to the implicit 2-pixel inset border.  In IE6/7 quirks mode and
+  // IE6 standards mode, this border can be overridden by setting the
+  // document element's border to zero -- thus, we cannot rely on the
+  // offset always being 2 pixels.
+
+  // In quirks mode, the offset can be determined by querying the body's
+  // clientLeft/clientTop, but in standards mode, it is found by querying
+  // the document element's clientLeft/clientTop.  Since we already called
+  // getClientBoundingRect we have already forced a reflow, so it is not
+  // too expensive just to query them all.
+
+  // ie 下应该减去窗口的边框吧，毕竟默认 absolute 都是相对窗口定位的
+  // 窗口边框标准是设 documentElement ,quirks 时设置 body
+  // 最好禁止在 body 和 html 上边框 ，但 ie < 9 html 默认有 2px ，减去
+  // 但是非 ie 不可能设置窗口边框，body html 也不是窗口 ,ie 可以通过 html,body 设置
+  // 标准 ie 下 docElem.clientTop 就是 border-top
+  // ie7 html 即窗口边框改变不了。永远为 2
+  // 但标准 firefox/chrome/ie9 下 docElem.clientTop 是窗口边框，即使设了 border-top 也为 0
+
+  x -= docElem.clientLeft || body.clientLeft || 0;
+  y -= docElem.clientTop || body.clientTop || 0;
+
+  return {
+    left: x,
+    top: y
+  };
+}
+
+function getScroll(w, top) {
+  var ret = w['page' + (top ? 'Y' : 'X') + 'Offset'];
+  var method = 'scroll' + (top ? 'Top' : 'Left');
+  if (typeof ret !== 'number') {
+    var d = w.document;
+    // ie6,7,8 standard mode
+    ret = d.documentElement[method];
+    if (typeof ret !== 'number') {
+      // quirks mode
+      ret = d.body[method];
+    }
+  }
+  return ret;
+}
+
+function getScrollLeft(w) {
+  return getScroll(w);
+}
+
+function getScrollTop(w) {
+  return getScroll(w, true);
+}
+
+function getOffset(el) {
+  var pos = getClientPosition(el);
+  var doc = el.ownerDocument;
+  var w = doc.defaultView || doc.parentWindow;
+  pos.left += getScrollLeft(w);
+  pos.top += getScrollTop(w);
+  return pos;
+}
+function _getComputedStyle(elem, name, computedStyle_) {
+  var val = '';
+  var d = elem.ownerDocument;
+  var computedStyle = computedStyle_ || d.defaultView.getComputedStyle(elem, null);
+
+  // https://github.com/kissyteam/kissy/issues/61
+  if (computedStyle) {
+    val = computedStyle.getPropertyValue(name) || computedStyle[name];
+  }
+
+  return val;
+}
+
+var _RE_NUM_NO_PX = new RegExp('^(' + RE_NUM + ')(?!px)[a-z%]+$', 'i');
+var RE_POS = /^(top|right|bottom|left)$/;
+var CURRENT_STYLE = 'currentStyle';
+var RUNTIME_STYLE = 'runtimeStyle';
+var LEFT = 'left';
+var PX = 'px';
+
+function _getComputedStyleIE(elem, name) {
+  // currentStyle maybe null
+  // http://msdn.microsoft.com/en-us/library/ms535231.aspx
+  var ret = elem[CURRENT_STYLE] && elem[CURRENT_STYLE][name];
+
+  // 当 width/height 设置为百分比时，通过 pixelLeft 方式转换的 width/height 值
+  // 一开始就处理了! CUSTOM_STYLE.height,CUSTOM_STYLE.width ,cssHook 解决@2011-08-19
+  // 在 ie 下不对，需要直接用 offset 方式
+  // borderWidth 等值也有问题，但考虑到 borderWidth 设为百分比的概率很小，这里就不考虑了
+
+  // From the awesome hack by Dean Edwards
+  // http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
+  // If we're not dealing with a regular pixel number
+  // but a number that has a weird ending, we need to convert it to pixels
+  // exclude left right for relativity
+  if (_RE_NUM_NO_PX.test(ret) && !RE_POS.test(name)) {
+    // Remember the original values
+    var style = elem.style;
+    var left = style[LEFT];
+    var rsLeft = elem[RUNTIME_STYLE][LEFT];
+
+    // prevent flashing of content
+    elem[RUNTIME_STYLE][LEFT] = elem[CURRENT_STYLE][LEFT];
+
+    // Put in the new values to get a computed value out
+    style[LEFT] = name === 'fontSize' ? '1em' : ret || 0;
+    ret = style.pixelLeft + PX;
+
+    // Revert the changed values
+    style[LEFT] = left;
+
+    elem[RUNTIME_STYLE][LEFT] = rsLeft;
+  }
+  return ret === '' ? 'auto' : ret;
+}
+
+var getComputedStyleX = undefined;
+if (typeof window !== 'undefined') {
+  getComputedStyleX = window.getComputedStyle ? _getComputedStyle : _getComputedStyleIE;
+}
+
+function each(arr, fn) {
+  for (var i = 0; i < arr.length; i++) {
+    fn(arr[i]);
+  }
+}
+
+function isBorderBoxFn(elem) {
+  return getComputedStyleX(elem, 'boxSizing') === 'border-box';
+}
+
+var BOX_MODELS = ['margin', 'border', 'padding'];
+var CONTENT_INDEX = -1;
+var PADDING_INDEX = 2;
+var BORDER_INDEX = 1;
+var MARGIN_INDEX = 0;
+
+function swap(elem, options, callback) {
+  var old = {};
+  var style = elem.style;
+  var name = undefined;
+
+  // Remember the old values, and insert the new ones
+  for (name in options) {
+    if (options.hasOwnProperty(name)) {
+      old[name] = style[name];
+      style[name] = options[name];
+    }
+  }
+
+  callback.call(elem);
+
+  // Revert the old values
+  for (name in options) {
+    if (options.hasOwnProperty(name)) {
+      style[name] = old[name];
+    }
+  }
+}
+
+function getPBMWidth(elem, props, which) {
+  var value = 0;
+  var prop = undefined;
+  var j = undefined;
+  var i = undefined;
+  for (j = 0; j < props.length; j++) {
+    prop = props[j];
+    if (prop) {
+      for (i = 0; i < which.length; i++) {
+        var cssProp = undefined;
+        if (prop === 'border') {
+          cssProp = prop + which[i] + 'Width';
+        } else {
+          cssProp = prop + which[i];
+        }
+        value += parseFloat(getComputedStyleX(elem, cssProp)) || 0;
+      }
+    }
+  }
+  return value;
+}
+
+/**
+ * A crude way of determining if an object is a window
+ * @member util
+ */
+function isWindow(obj) {
+  // must use == for ie8
+  /* eslint eqeqeq:0 */
+  return obj != null && obj == obj.window;
+}
+
+var domUtils = {};
+
+each(['Width', 'Height'], function (name) {
+  domUtils['doc' + name] = function (refWin) {
+    var d = refWin.document;
+    return Math.max(
+    // firefox chrome documentElement.scrollHeight< body.scrollHeight
+    // ie standard mode : documentElement.scrollHeight> body.scrollHeight
+    d.documentElement['scroll' + name],
+    // quirks : documentElement.scrollHeight 最大等于可视窗口多一点？
+    d.body['scroll' + name], domUtils['viewport' + name](d));
+  };
+
+  domUtils['viewport' + name] = function (win) {
+    // pc browser includes scrollbar in window.innerWidth
+    var prop = 'client' + name;
+    var doc = win.document;
+    var body = doc.body;
+    var documentElement = doc.documentElement;
+    var documentElementProp = documentElement[prop];
+    // 标准模式取 documentElement
+    // backcompat 取 body
+    return doc.compatMode === 'CSS1Compat' && documentElementProp || body && body[prop] || documentElementProp;
+  };
+});
+
+/*
+ 得到元素的大小信息
+ @param elem
+ @param name
+ @param {String} [extra]  'padding' : (css width) + padding
+ 'border' : (css width) + padding + border
+ 'margin' : (css width) + padding + border + margin
+ */
+function getWH(elem, name, extra) {
+  if (isWindow(elem)) {
+    return name === 'width' ? domUtils.viewportWidth(elem) : domUtils.viewportHeight(elem);
+  } else if (elem.nodeType === 9) {
+    return name === 'width' ? domUtils.docWidth(elem) : domUtils.docHeight(elem);
+  }
+  var which = name === 'width' ? ['Left', 'Right'] : ['Top', 'Bottom'];
+  var borderBoxValue = name === 'width' ? elem.offsetWidth : elem.offsetHeight;
+  var computedStyle = getComputedStyleX(elem);
+  var isBorderBox = isBorderBoxFn(elem, computedStyle);
+  var cssBoxValue = 0;
+  if (borderBoxValue == null || borderBoxValue <= 0) {
+    borderBoxValue = undefined;
+    // Fall back to computed then un computed css if necessary
+    cssBoxValue = getComputedStyleX(elem, name);
+    if (cssBoxValue == null || Number(cssBoxValue) < 0) {
+      cssBoxValue = elem.style[name] || 0;
+    }
+    // Normalize '', auto, and prepare for extra
+    cssBoxValue = parseFloat(cssBoxValue) || 0;
+  }
+  if (extra === undefined) {
+    extra = isBorderBox ? BORDER_INDEX : CONTENT_INDEX;
+  }
+  var borderBoxValueOrIsBorderBox = borderBoxValue !== undefined || isBorderBox;
+  var val = borderBoxValue || cssBoxValue;
+  if (extra === CONTENT_INDEX) {
+    if (borderBoxValueOrIsBorderBox) {
+      return val - getPBMWidth(elem, ['border', 'padding'], which, computedStyle);
+    }
+    return cssBoxValue;
+  }
+  if (borderBoxValueOrIsBorderBox) {
+    var padding = extra === PADDING_INDEX ? -getPBMWidth(elem, ['border'], which, computedStyle) : getPBMWidth(elem, ['margin'], which, computedStyle);
+    return val + (extra === BORDER_INDEX ? 0 : padding);
+  }
+  return cssBoxValue + getPBMWidth(elem, BOX_MODELS.slice(extra), which, computedStyle);
+}
+
+var cssShow = {
+  position: 'absolute',
+  visibility: 'hidden',
+  display: 'block'
+};
+
+// fix #119 : https://github.com/kissyteam/kissy/issues/119
+function getWHIgnoreDisplay(elem) {
+  var val = undefined;
+  var args = arguments;
+  // in case elem is window
+  // elem.offsetWidth === undefined
+  if (elem.offsetWidth !== 0) {
+    val = getWH.apply(undefined, args);
+  } else {
+    swap(elem, cssShow, function () {
+      val = getWH.apply(undefined, args);
+    });
+  }
+  return val;
+}
+
+function css(el, name, v) {
+  var value = v;
+  if ((typeof name === 'undefined' ? 'undefined' : _typeof(name)) === 'object') {
+    for (var i in name) {
+      if (name.hasOwnProperty(i)) {
+        css(el, i, name[i]);
+      }
+    }
+    return undefined;
+  }
+  if (typeof value !== 'undefined') {
+    if (typeof value === 'number') {
+      value += 'px';
+    }
+    el.style[name] = value;
+    return undefined;
+  }
+  return getComputedStyleX(el, name);
+}
+
+each(['width', 'height'], function (name) {
+  var first = name.charAt(0).toUpperCase() + name.slice(1);
+  domUtils['outer' + first] = function (el, includeMargin) {
+    return el && getWHIgnoreDisplay(el, name, includeMargin ? MARGIN_INDEX : BORDER_INDEX);
+  };
+  var which = name === 'width' ? ['Left', 'Right'] : ['Top', 'Bottom'];
+
+  domUtils[name] = function (elem, val) {
+    if (val !== undefined) {
+      if (elem) {
+        var computedStyle = getComputedStyleX(elem);
+        var isBorderBox = isBorderBoxFn(elem);
+        if (isBorderBox) {
+          val += getPBMWidth(elem, ['padding', 'border'], which, computedStyle);
+        }
+        return css(elem, name, val);
+      }
+      return undefined;
+    }
+    return elem && getWHIgnoreDisplay(elem, name, CONTENT_INDEX);
+  };
+});
+
+// 设置 elem 相对 elem.ownerDocument 的坐标
+function setOffset(elem, offset) {
+  // set position first, in-case top/left are set even on static elem
+  if (css(elem, 'position') === 'static') {
+    elem.style.position = 'relative';
+  }
+
+  var old = getOffset(elem);
+  var ret = {};
+  var current = undefined;
+  var key = undefined;
+
+  for (key in offset) {
+    if (offset.hasOwnProperty(key)) {
+      current = parseFloat(css(elem, key)) || 0;
+      ret[key] = current + offset[key] - old[key];
+    }
+  }
+  css(elem, ret);
+}
+
+module.exports = _extends({
+  getWindow: function getWindow(node) {
+    var doc = node.ownerDocument || node;
+    return doc.defaultView || doc.parentWindow;
+  },
+  offset: function offset(el, value) {
+    if (typeof value !== 'undefined') {
+      setOffset(el, value);
+    } else {
+      return getOffset(el);
+    }
+  },
+
+  isWindow: isWindow,
+  each: each,
+  css: css,
+  clone: function clone(obj) {
+    var ret = {};
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        ret[i] = obj[i];
+      }
+    }
+    var overflow = obj.overflow;
+    if (overflow) {
+      for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+          ret.overflow[i] = obj.overflow[i];
+        }
+      }
+    }
+    return ret;
+  },
+  scrollLeft: function scrollLeft(w, v) {
+    if (isWindow(w)) {
+      if (v === undefined) {
+        return getScrollLeft(w);
+      }
+      window.scrollTo(v, getScrollTop(w));
+    } else {
+      if (v === undefined) {
+        return w.scrollLeft;
+      }
+      w.scrollLeft = v;
+    }
+  },
+  scrollTop: function scrollTop(w, v) {
+    if (isWindow(w)) {
+      if (v === undefined) {
+        return getScrollTop(w);
+      }
+      window.scrollTo(getScrollLeft(w), v);
+    } else {
+      if (v === undefined) {
+        return w.scrollTop;
+      }
+      w.scrollTop = v;
+    }
+  },
+
+  viewportWidth: 0,
+  viewportHeight: 0
+}, domUtils);
+
+/***/ }),
+
+/***/ "./src/style.scss":
+/*!************************!*\
+  !*** ./src/style.scss ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "React" ***!
@@ -3087,6 +4606,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 "use strict";
 module.exports = window["React"];
+
+/***/ }),
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["lodash"];
 
 /***/ }),
 
@@ -3167,17 +4697,6 @@ module.exports = window["wp"]["data"];
 
 /***/ }),
 
-/***/ "@wordpress/edit-post":
-/*!**********************************!*\
-  !*** external ["wp","editPost"] ***!
-  \**********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["editPost"];
-
-/***/ }),
-
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -3208,6 +4727,17 @@ module.exports = window["wp"]["htmlEntities"];
 
 "use strict";
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/is-shallow-equal":
+/*!****************************************!*\
+  !*** external ["wp","isShallowEqual"] ***!
+  \****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["isShallowEqual"];
 
 /***/ }),
 
@@ -3281,7 +4811,42 @@ module.exports = window["wp"]["privateApis"];
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -3322,66 +4887,68 @@ module.exports = window["wp"]["privateApis"];
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"index": 0,
+/******/ 			"./style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkcustom_block_styles"] = globalThis["webpackChunkcustom_block_styles"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_edit_post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/edit-post */ "@wordpress/edit-post");
-/* harmony import */ var _wordpress_edit_post__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_edit_post__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/styles.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _BlockStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BlockStyles */ "./src/BlockStyles.js");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
-
-
-
-
-
-
-
-
-function Edit() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_edit_post__WEBPACK_IMPORTED_MODULE_2__.PluginSidebar, {
-    name: "wp-dev-custom-block-style",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Custom Block Styles"),
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Custom Block Styles")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BlockStyles__WEBPACK_IMPORTED_MODULE_4__["default"], null))));
-}
-(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_1__.registerPlugin)("wp-dev-custom-block-style", {
-  render: Edit
-});
-
-// @todo Also make this launchable from inside a block.
-
-_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
-  path: "/wp/v2/wpdev_block_style"
-}).then(response => {
-  response.forEach(blockStyle => {
-    console.log(blockStyle);
-    wp.blocks.registerBlockStyle(blockStyle.meta.block_type, {
-      name: blockStyle.slug,
-      label: blockStyle.title.rendered,
-      inlineStyle: blockStyle.content.raw
-    });
-  });
-});
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-index"], () => (__webpack_require__("./src/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

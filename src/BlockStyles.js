@@ -7,18 +7,16 @@ import { __ } from "@wordpress/i18n";
 import { DataViews } from "@wordpress/dataviews";
 import { Icon, edit } from "@wordpress/icons";
 
-function BlockStyles() {
+function BlockStyles({ currentView, setCurrentView }) {
 	const [blockStyles, setBlockStyles] = useState([]);
-	const [currentView, setCurrentView] = useState("");
 	const [currentBlockStyle, setCurrentBlockStyle] = useState(null);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	// @todo - grab the current block type as default here
 	const newBlockStyle = {
 		id: 0,
 		title: "New Block Style",
-		slug: "new-block-style",
-		content: "selector { background-color: red; }",
+		slug: "is-style-new-block-style",
+		content: "selector {\n  opacity: 0.5;\n}",
 		meta: {
 			block_types: ["core/group"],
 		},
@@ -42,16 +40,15 @@ function BlockStyles() {
 		setCurrentView("edit");
 	};
 
-	useEffect(() => {
-		if (hasResolved) {
-			setBlockStyles(records);
-			console.log(records);
-		}
-	}, [hasResolved]);
-
 	const filterSelector = (css, record) => {
 		return css.replace(/selector/g, `.is-style-${record.slug}`);
 	};
+
+	useEffect(() => {
+		if (hasResolved) {
+			setBlockStyles(records);
+		}
+	}, [hasResolved]);
 
 	useEffect(() => {
 		if (records) {
@@ -72,137 +69,107 @@ function BlockStyles() {
 	}, [records]);
 
 	return (
-		<div>
-			<Button
-				onClick={() => {
-					setCurrentView("list");
-				}}
-				variant="primary"
-			>
-				{__("All Block Styles")}
-			</Button>
-			<Button
-				onClick={() => {
-					setCurrentView("new");
-				}}
-				variant="primary"
-			>
-				{__("Add New Block Style")}
-			</Button>
+		<>
 			{"list" === currentView && hasResolved && records.length > 0 && (
-				<Modal
-					title={__("Block Style")}
-					size="large"
-					onRequestClose={() => {
-						setCurrentView("");
+				<DataViews
+					data={records}
+					getItemId={(item) => {
+						return item.id;
 					}}
-				>
-					<DataViews
-						data={records}
-						// getItemId={function noRefCheck() {}}
-						onChangeView={function noRefCheck() {}}
-						fields={[
-							{
-								enableHiding: false,
-								getValue: function noRefCheck() {},
-								render: ({ item }) => {
-									return (
-										decodeEntities(item.title?.rendered) || __("(no title)")
-									);
-								},
-								header: "Title",
-								id: "title",
-								maxWidth: 400,
+					onChangeView={function noRefCheck() {}}
+					fields={[
+						{
+							enableHiding: false,
+							getValue: function noRefCheck() {},
+							render: ({ item }) => {
+								return (
+									<h4>
+										<Button
+											variant="link"
+											onClick={() => launchEditForm(item.id)}
+										>
+											{decodeEntities(item.title?.rendered) || __("(no title)")}
+										</Button>
+									</h4>
+								);
 							},
-							{
-								enableHiding: false,
-								getValue: function noRefCheck() {},
-								render: ({ item }) => {
-									return <code>{`.is-style-${item.slug}`}</code>;
-								},
-								header: "Class",
-								id: "slug",
-								maxWidth: 400,
+							header: "Title",
+							id: "title",
+							maxWidth: 400,
+						},
+						{
+							enableHiding: false,
+							getValue: function noRefCheck() {},
+							render: ({ item }) => {
+								return <code>{`.is-style-${item.slug}`}</code>;
 							},
-							{
-								enableHiding: false,
-								getValue: function noRefCheck() {},
-								render: ({ item }) => {
-									return item.meta.block_types?.map((blockType, i) => (
-										<code key={i}>{blockType}</code>
-									));
-								},
-								header: "Block Types",
-								id: "groups",
-								maxWidth: 400,
+							header: "Class",
+							id: "slug",
+							maxWidth: 400,
+						},
+						{
+							enableHiding: false,
+							getValue: function noRefCheck() {},
+							render: ({ item }) => {
+								return item.meta.block_types?.map((blockType, i) => (
+									<code key={i}>{blockType}</code>
+								));
 							},
-						]}
-						supportedLayouts={["table"]}
-						view={{
-							type: "table",
-							perPage: 15,
-							page: 1,
-							layout: {},
-							filters: [],
-							hiddenFields: [],
-						}}
-						actions={[
-							{
-								callback: (items) => {
-									launchEditForm(items[0].id);
-								},
-								id: "edit",
-								label: __("Edit"),
-								icon: <Icon icon={edit} />,
-							},
-							{
-								callback: () => {
-									// launchEditForm();
-								},
-								id: "delete",
-								label: __("Delete"),
-							},
-						]}
-						paginationInfo={{
-							totalPages: 1,
-							totalItems: records.length,
+							header: "Block Types",
+							id: "groups",
+							maxWidth: 400,
+						},
+					]}
+					supportedLayouts={["table"]}
+					view={{
+						type: "table",
+						perPage: 15,
+						page: 1,
+						layout: {},
+						filters: [],
+						hiddenFields: [],
+					}}
+					actions={
+						[
+							// {
+							// 	callback: () => {
+							// 		// launchEditForm();
+							// 	},
+							// 	id: "delete",
+							// 	label: __("Delete"),
+							// 	icon: <Icon icon={edit} />,
+							// },
+						]
+					}
+					paginationInfo={{
+						totalPages: 1,
+						totalItems: records.length,
+					}}
+				/>
+			)}
+			{currentView === "edit" && (
+				<>
+					<h2>{__("Edit Block Style")}</h2>
+					<EditBlockStyle
+						attributes={currentBlockStyle}
+						closeForm={() => {
+							setCurrentView("list");
 						}}
 					/>
-				</Modal>
+				</>
 			)}
-			{("edit" === currentView || "new" === currentView) && (
-				<Modal
-					title={__("Block Style")}
-					onRequestClose={() => {
-						setCurrentView("");
-					}}
-				>
-					{currentView === "edit" && (
-						<>
-							<h2>{__("Edit Block Style")}</h2>
-
-							<EditBlockStyle
-								attributes={currentBlockStyle}
-								closeForm={() => {
-									setCurrentView("list");
-								}}
-							/>
-						</>
-					)}
-					{currentView === "new" && (
-						<>
-							<h2>{__("New Block Style")}</h2>
-							<EditBlockStyle
-								attributes={newBlockStyle}
-								closeForm={() => {
-									setCurrentView("list");
-								}}
-							/>
-						</>
-					)}
-				</Modal>
+			{currentView === "new" && (
+				<>
+					<h2>{__("New Block Style")}</h2>
+					<EditBlockStyle
+						attributes={newBlockStyle}
+						closeForm={() => {
+							setCurrentView("list");
+						}}
+					/>
+				</>
 			)}
-		</div>
+		</>
 	);
 }
 

@@ -1,9 +1,10 @@
 import {
 	TextControl,
 	TextareaControl,
-	SelectControl,
+	ComboboxControl,
 	Button,
 	Flex,
+	FlexItem,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { useSelect, useDispatch } from "@wordpress/data";
@@ -12,6 +13,7 @@ import { store as coreDataStore } from "@wordpress/core-data";
 import { transformStyles } from "@wordpress/block-editor";
 import { registerBlockStyle } from "@wordpress/blocks";
 import { decodeEntities } from "@wordpress/html-entities";
+import TokenMultiSelectControl from "./token-multiselect-control";
 
 function EditBlockStyle({ attributes, closeForm }) {
 	const [blockStyle, setBlockStyle] = useState(attributes);
@@ -23,7 +25,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 		const args = {
 			title: blockStyle.title,
 			content: blockStyle.content,
-			slug: blockStyle.slug,
+			slug: blockStyle.slug.replace("is-style-", ""),
 			status: "publish",
 			meta: {
 				block_types: blockStyle.meta.block_types ?? [],
@@ -47,7 +49,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 			);
 			blockStyle.meta.block_types.forEach((blockType) => {
 				registerBlockStyle(blockType, {
-					name: blockStyle.slug,
+					name: blockStyle.slug.replace("is-style-", ""),
 					label: decodeEntities(blockStyle.title),
 				});
 			});
@@ -59,31 +61,37 @@ function EditBlockStyle({ attributes, closeForm }) {
 
 	return (
 		<Flex gap="3" direction="column">
-			<TextControl
-				label={__("Label")}
-				value={blockStyle.title ?? ""}
-				onChange={(title) =>
-					setBlockStyle({
-						...blockStyle,
-						title,
-					})
-				}
-			/>
-			<TextControl
-				label={__("Class Name")}
-				value={blockStyle.slug ?? ""}
-				help={__(
-					"This is the class name that will be added to the block, and will be prefixed with is-style-",
-				)}
-				onChange={(slug) =>
-					setBlockStyle({
-						...blockStyle,
-						slug,
-					})
-				}
-			/>
-			<SelectControl
-				label={__("Block Type")}
+			<Flex>
+				<FlexItem>
+					<TextControl
+						label={__("Name")}
+						value={blockStyle.title ?? ""}
+						onChange={(title) =>
+							setBlockStyle({
+								...blockStyle,
+								title,
+							})
+						}
+					/>
+				</FlexItem>
+				<FlexItem>
+					<TextControl
+						label={__("Class")}
+						value={blockStyle.slug ?? ""}
+						help={__(
+							"This is the class name that will be added to the block, and will always be prefixed with .is-style-",
+						)}
+						onChange={(slug) =>
+							setBlockStyle({
+								...blockStyle,
+								slug,
+							})
+						}
+					/>
+				</FlexItem>
+			</Flex>
+			<TokenMultiSelectControl
+				label={__("Supported Block Types")}
 				value={blockStyle.meta?.block_types ?? []}
 				options={blockTypes.map((blockType) => ({
 					label: blockType.title,
@@ -113,9 +121,18 @@ function EditBlockStyle({ attributes, closeForm }) {
 					})
 				}
 			/>
-			<Button variant="primary" onClick={saveBlockStyle}>
-				{__("Save Block Style")}
-			</Button>
+			<Flex>
+				<FlexItem>
+					<Button variant="primary" onClick={saveBlockStyle}>
+						{__("Save Block Style")}
+					</Button>
+				</FlexItem>
+				<FlexItem>
+					<Button variant="danger" onClick={closeForm}>
+						{__("Cancel")}
+					</Button>
+				</FlexItem>
+			</Flex>
 		</Flex>
 	);
 }
