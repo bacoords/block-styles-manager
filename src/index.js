@@ -1,12 +1,15 @@
-import { registerPlugin } from "@wordpress/plugins";
 import { styles } from "@wordpress/icons";
+import { createHigherOrderComponent } from "@wordpress/compose";
+
 import { useState, useEffect } from "@wordpress/element";
 import { useEntityRecords } from "@wordpress/core-data";
-import { MenuItem, Modal, Button } from "@wordpress/components";
-import { BlockSettingsMenuControls } from "@wordpress/block-editor";
+import { PanelBody, Modal, Button, PanelRow } from "@wordpress/components";
+import { InspectorControls } from "@wordpress/block-editor";
+import { addFilter } from "@wordpress/hooks";
 import apiFetch from "@wordpress/api-fetch";
 import { __ } from "@wordpress/i18n";
 
+import TokenMultiSelectControl from "./token-multiselect-control";
 import ViewBlockStyles from "./ViewBlockStyles";
 import EditBlockStyle from "./EditBlockStyle";
 
@@ -17,6 +20,7 @@ const BlockStylesManagerPlugin = () => {
 	const [modalView, setModalView] = useState("");
 	const [currentBlockStyle, setCurrentBlockStyle] = useState(null);
 	const [blockStyles, setBlockStyles] = useState([]);
+	const [selectedBlockStyles, setSelectedBlockStyles] = useState([]);
 
 	const { records, hasResolved } = useEntityRecords(
 		"postType",
@@ -84,15 +88,34 @@ const BlockStylesManagerPlugin = () => {
 	};
 
 	return (
-		<BlockSettingsMenuControls>
-			<MenuItem
-				icon={styles}
-				onClick={() => setModalView("list")}
-				aria-expanded={"" !== modalView}
-				aria-haspopup="dialog"
-			>
-				{__("Block Styles")}
-			</MenuItem>
+		<InspectorControls>
+			<PanelBody title={__("Block Styles Manager")} initialOpen={true}>
+				{/* <PanelRow>
+					<TokenMultiSelectControl
+						label={__("Add Styles")}
+						value={selectedBlockStyles}
+						options={blockStyles.map((blockStyle) => ({
+							label: blockStyle.title.rendered,
+							value: blockStyle.id,
+						}))}
+						multiple={true}
+						onChange={(blockStyles) => {
+							setSelectedBlockStyles(blockStyles);
+						}}
+					/>
+				</PanelRow> */}
+				<PanelRow>
+					<Button
+						icon={styles}
+						onClick={() => setModalView("list")}
+						aria-expanded={"" !== modalView}
+						aria-haspopup="dialog"
+						variant="secondary"
+					>
+						{__("Manage Block Styles")}
+					</Button>
+				</PanelRow>
+			</PanelBody>
 			{"" !== modalView && (
 				<Modal
 					title={__("Block Styles Manager")}
@@ -135,14 +158,34 @@ const BlockStylesManagerPlugin = () => {
 					)}
 				</Modal>
 			)}
-		</BlockSettingsMenuControls>
+		</InspectorControls>
 	);
 };
 
-// Register the plugin.
-registerPlugin("block-styles-manager", {
-	render: BlockStylesManagerPlugin,
-});
+/**
+ * Add the edit component to the block.
+ * This is the component that will be rendered in the editor.
+ * It will be rendered after the original block edit component.
+ *
+ * @param {function} BlockEdit Original component
+ * @returns {function} Wrapped component
+ *
+ * @see https://developer.wordpress.org/block-editor/developers/filters/block-filters/#editor-blockedit
+ */
+addFilter(
+	"editor.BlockEdit",
+	"wpdev/block-styles-manager",
+	createHigherOrderComponent((BlockEdit) => {
+		return (props) => {
+			return (
+				<>
+					<BlockEdit {...props} />
+					<BlockStylesManagerPlugin {...props} />
+				</>
+			);
+		};
+	}),
+);
 
 // On initial load, register all block styles.
 apiFetch({

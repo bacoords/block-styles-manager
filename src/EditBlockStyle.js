@@ -1,13 +1,12 @@
 import {
 	TextControl,
 	TextareaControl,
-	ComboboxControl,
 	Button,
 	Flex,
 	FlexItem,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import { useSelect, useDispatch } from "@wordpress/data";
+import { useDispatch } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 import { store as coreDataStore } from "@wordpress/core-data";
 import { transformStyles } from "@wordpress/block-editor";
