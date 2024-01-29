@@ -1,23 +1,23 @@
 <?php
 /**
- * Plugin Name:       Custom Block Styles
+ * Plugin Name:       Block Styles Manager
  * Description:       Example block scaffolded with Create Block tool.
- * Requires at least: 6.1
- * Requires PHP:      7.0
+ * Requires at least: 6.4
+ * Requires PHP:      7.4
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            bacoords
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://github.com/bacoords/custom-block-styles
- * Text Domain:       custom-block-styles
+ * Update URI:        https://github.com/bacoords/block-styles-manager
+ * Text Domain:       block-styles-manager
  *
- * @package           wpdev
+ * @package           BlockStylesManager
  */
 
-namespace wpdev;
+namespace BlockStylesManager;
 
 /**
- * Enqueue block editor only JavaScript.
+ * Enqueue block editor only JavaScript and CSS.
  */
 function enqueue_editor_modifications() {
 	$asset_file = include plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
@@ -41,6 +41,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_editor_modi
 
 /**
  * Register our block styles post type.
+ * Note that we're not going to actually use this post type, this is just for prototyping.
  *
  * @return void
  */
@@ -87,12 +88,7 @@ add_action( 'init', __NAMESPACE__ . '\register_block_styles_post_type' );
  *
  * @return void
  */
-
 function register_block_styles() {
-
-	// if ( is_admin() ) {
-	// return;
-	// }
 
 	$block_styles = new \WP_Query(
 		array(
@@ -107,7 +103,7 @@ function register_block_styles() {
 			$block_styles->the_post();
 
 			$block_types = get_post_meta( get_the_ID(), 'block_types', true );
-			do_action( 'qm/debug', $block_types );
+
 			if ( ! $block_types ) {
 				continue;
 			}
