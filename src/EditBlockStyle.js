@@ -12,7 +12,7 @@ import { store as coreDataStore } from "@wordpress/core-data";
 import { transformStyles } from "@wordpress/block-editor";
 import { registerBlockStyle } from "@wordpress/blocks";
 import { decodeEntities } from "@wordpress/html-entities";
-import TokenMultiSelectControl from "./token-multiselect-control";
+import { MultiSelectControl } from "@codeamp/block-components";
 
 function EditBlockStyle({ attributes, closeForm }) {
 	const [blockStyle, setBlockStyle] = useState(attributes);
@@ -89,7 +89,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 					/>
 				</FlexItem>
 			</Flex>
-			<TokenMultiSelectControl
+			<MultiSelectControl
 				label={__("Supported Block Types")}
 				value={blockStyle.meta?.block_types ?? []}
 				options={blockTypes.map((blockType) => ({

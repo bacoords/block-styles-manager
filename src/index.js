@@ -7,7 +7,7 @@ import { InspectorControls } from "@wordpress/block-editor";
 import { addFilter } from "@wordpress/hooks";
 import { __ } from "@wordpress/i18n";
 
-import TokenMultiSelectControl from "./token-multiselect-control";
+import { MultiSelectControl } from "@codeamp/block-components";
 import ViewBlockStyles from "./ViewBlockStyles";
 import EditBlockStyle from "./EditBlockStyle";
 import "./filters.js";
@@ -104,9 +104,13 @@ const BlockStylesManagerPlugin = (props) => {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={__("Block Styles Manager")} initialOpen={true}>
+			<PanelBody
+				title={__("Block Styles Manager")}
+				initialOpen={true}
+				className="wpdev-block-styles-manager--panel"
+			>
 				<PanelRow>
-					<TokenMultiSelectControl
+					<MultiSelectControl
 						label={__("Add Styles")}
 						value={attributes.wpdevBlockStyles}
 						options={blockStyles.map((blockStyle) => ({
@@ -135,7 +139,7 @@ const BlockStylesManagerPlugin = (props) => {
 					size="large"
 					headerActions={<AddNewButton />}
 					isFullScreen={true}
-					overlayClassName="wpdev-block-style-manager"
+					overlayClassName="wpdev-block-styles-manager"
 					onRequestClose={() => {
 						setModalView("");
 					}}
