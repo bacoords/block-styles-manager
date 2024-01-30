@@ -2740,7 +2740,7 @@ function EditBlockStyle({
     variant: "primary",
     onClick: saveBlockStyle
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Save Block Style"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-    variant: "danger",
+    isDestructive: true,
     onClick: closeForm
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Cancel")))));
 }
@@ -3003,7 +3003,7 @@ const BlockStylesManagerPlugin = props => {
     per_page: -1
   });
   const launchEditForm = id => {
-    let blockStyle = blockStyles.find(blockStyle => blockStyle.id === parseInt(id));
+    let blockStyle = records.find(blockStyle => blockStyle.id === parseInt(id));
     setCurrentBlockStyle({
       ...blockStyle,
       title: blockStyle.title.raw,
@@ -3036,7 +3036,7 @@ const BlockStylesManagerPlugin = props => {
     if (records) {
       var _window$parent$docume;
       console.log(records);
-      setBlockStyles(records);
+      setBlockStyles(records.filter(record => record.meta.block_types.includes(name)));
       // Add records CSS to iframe
       let css = "";
       records.forEach(record => {
@@ -3051,6 +3051,9 @@ const BlockStylesManagerPlugin = props => {
     }
   }, [records]);
   const AddNewButton = () => {
+    if ("list" !== modalView) {
+      return null;
+    }
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
       onClick: () => {
         console.log("clicked");

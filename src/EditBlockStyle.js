@@ -127,7 +127,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 					</Button>
 				</FlexItem>
 				<FlexItem>
-					<Button variant="danger" onClick={closeForm}>
+					<Button isDestructive onClick={closeForm}>
 						{__("Cancel")}
 					</Button>
 				</FlexItem>

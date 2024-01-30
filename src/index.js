@@ -1,6 +1,5 @@
 import { styles } from "@wordpress/icons";
 import { createHigherOrderComponent } from "@wordpress/compose";
-
 import { useState, useEffect } from "@wordpress/element";
 import { useEntityRecords } from "@wordpress/core-data";
 import { PanelBody, Modal, Button, PanelRow } from "@wordpress/components";
@@ -32,7 +31,7 @@ const BlockStylesManagerPlugin = (props) => {
 	);
 
 	const launchEditForm = (id) => {
-		let blockStyle = blockStyles.find(
+		let blockStyle = records.find(
 			(blockStyle) => blockStyle.id === parseInt(id),
 		);
 		setCurrentBlockStyle({
@@ -65,7 +64,9 @@ const BlockStylesManagerPlugin = (props) => {
 	useEffect(() => {
 		if (records) {
 			console.log(records);
-			setBlockStyles(records);
+			setBlockStyles(
+				records.filter((record) => record.meta.block_types.includes(name)),
+			);
 			// Add records CSS to iframe
 			let css = "";
 			records.forEach((record) => {
@@ -85,6 +86,9 @@ const BlockStylesManagerPlugin = (props) => {
 	}, [records]);
 
 	const AddNewButton = () => {
+		if ("list" !== modalView) {
+			return null;
+		}
 		return (
 			<Button
 				onClick={() => {
