@@ -90,6 +90,10 @@ add_action( 'init', __NAMESPACE__ . '\register_block_styles_post_type' );
  */
 function register_block_styles() {
 
+	if ( is_admin() ) {
+		return;
+	}
+
 	$block_styles = new \WP_Query(
 		array(
 			'post_type'      => 'wpdev_block_style',

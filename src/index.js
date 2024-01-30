@@ -6,21 +6,24 @@ import { useEntityRecords } from "@wordpress/core-data";
 import { PanelBody, Modal, Button, PanelRow } from "@wordpress/components";
 import { InspectorControls } from "@wordpress/block-editor";
 import { addFilter } from "@wordpress/hooks";
-import apiFetch from "@wordpress/api-fetch";
 import { __ } from "@wordpress/i18n";
 
 import TokenMultiSelectControl from "./token-multiselect-control";
 import ViewBlockStyles from "./ViewBlockStyles";
 import EditBlockStyle from "./EditBlockStyle";
+import "./filters.js";
 
 import "./style.scss";
 
-// Block Styles Manager Plugin Component
-const BlockStylesManagerPlugin = () => {
+/**
+ * Mount the main Block Styles Manager Plugin Component
+ * @returns
+ */
+const BlockStylesManagerPlugin = (props) => {
+	const { attributes, setAttributes, name } = props;
 	const [modalView, setModalView] = useState("");
 	const [currentBlockStyle, setCurrentBlockStyle] = useState(null);
 	const [blockStyles, setBlockStyles] = useState([]);
-	const [selectedBlockStyles, setSelectedBlockStyles] = useState([]);
 
 	const { records, hasResolved } = useEntityRecords(
 		"postType",
@@ -40,6 +43,10 @@ const BlockStylesManagerPlugin = () => {
 		setModalView("edit");
 	};
 
+	const saveStylesInAttribute = (slugs) => {
+		setAttributes({ wpdevBlockStyles: slugs });
+	};
+
 	// @todo - grab the current block type as default here
 	const newBlockStyle = {
 		id: 0,
@@ -54,8 +61,10 @@ const BlockStylesManagerPlugin = () => {
 		return css.replace(/selector/g, `.is-style-${record.slug}`);
 	};
 
+	// Need to move this out so it loads on the first render.
 	useEffect(() => {
 		if (records) {
+			console.log(records);
 			setBlockStyles(records);
 			// Add records CSS to iframe
 			let css = "";
@@ -68,6 +77,8 @@ const BlockStylesManagerPlugin = () => {
 			let destination =
 				window.parent.document.querySelector('iframe[name="editor-canvas"]')
 					?.document.head ?? document.head;
+
+			destination.querySelector("#wpdev-block-styles")?.remove();
 
 			destination.appendChild(style);
 		}
@@ -90,20 +101,18 @@ const BlockStylesManagerPlugin = () => {
 	return (
 		<InspectorControls>
 			<PanelBody title={__("Block Styles Manager")} initialOpen={true}>
-				{/* <PanelRow>
+				<PanelRow>
 					<TokenMultiSelectControl
 						label={__("Add Styles")}
-						value={selectedBlockStyles}
+						value={attributes.wpdevBlockStyles}
 						options={blockStyles.map((blockStyle) => ({
 							label: blockStyle.title.rendered,
-							value: blockStyle.id,
+							value: `is-style-` + blockStyle.slug,
 						}))}
 						multiple={true}
-						onChange={(blockStyles) => {
-							setSelectedBlockStyles(blockStyles);
-						}}
+						onChange={saveStylesInAttribute}
 					/>
-				</PanelRow> */}
+				</PanelRow>
 				<PanelRow>
 					<Button
 						icon={styles}
@@ -174,29 +183,15 @@ const BlockStylesManagerPlugin = () => {
  */
 addFilter(
 	"editor.BlockEdit",
-	"wpdev/block-styles-manager",
+	"wpdev/block-styles-manager-add-styles-manager",
 	createHigherOrderComponent((BlockEdit) => {
 		return (props) => {
 			return (
 				<>
 					<BlockEdit {...props} />
-					<BlockStylesManagerPlugin {...props} />
+					{props.isSelected && <BlockStylesManagerPlugin {...props} />}
 				</>
 			);
 		};
 	}),
 );
-
-// On initial load, register all block styles.
-apiFetch({
-	path: "/wp/v2/wpdev_block_style",
-}).then((response) => {
-	response.forEach((blockStyle) => {
-		console.log(blockStyle);
-		wp.blocks.registerBlockStyle(blockStyle.meta.block_type, {
-			name: blockStyle.slug,
-			label: blockStyle.title.rendered,
-			inlineStyle: blockStyle.content.raw,
-		});
-	});
-});
