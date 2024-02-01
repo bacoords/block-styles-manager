@@ -38,7 +38,7 @@ function ViewBlockStyles({ launchEditForm, records, hasResolved }) {
 							enableHiding: false,
 							getValue: function noRefCheck() {},
 							render: ({ item }) => {
-								return <code>{`.is-style-${item.slug}`}</code>;
+								return <code>{`.${item.slug}`}</code>;
 							},
 							header: "Class",
 							id: "slug",

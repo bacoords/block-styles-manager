@@ -86,18 +86,23 @@ add_action( 'init', __NAMESPACE__ . '\register_block_styles_post_type' );
 /**
  * Register our block styles.
  *
- * @return void
+ * @param string $block_content The block content.
+ * @param array  $block The block.
+ * @return string
  */
-function register_block_styles() {
+function register_block_styles_on_render( $block_content, $block ) {
 
-	if ( is_admin() ) {
-		return;
+	if ( ! isset( $block['attrs']['wpdevBlockStyles'] ) ) {
+		return $block_content;
 	}
+
+	$block_styles = $block['attrs']['wpdevBlockStyles'];
 
 	$block_styles = new \WP_Query(
 		array(
 			'post_type'      => 'wpdev_block_style',
 			'posts_per_page' => -1,
+			'post_name__in'  => $block_styles,
 		)
 	);
 
@@ -114,11 +119,6 @@ function register_block_styles() {
 
 			foreach ( $block_types as $block_type ) {
 
-				$selector = get_post_field( 'post_name', get_the_ID() );
-				if ( strpos( $selector, 'is-style-' ) === false ) {
-					$selector = 'is-style-' . $selector;
-				}
-
 				register_block_style(
 					$block_type,
 					array(
@@ -126,7 +126,7 @@ function register_block_styles() {
 						'name'         => get_post_field( 'post_name', get_the_ID() ),
 						'inline_style' => str_replace(
 							'selector',
-							'.' . $selector,
+							'.' . get_post_field( 'post_name', get_the_ID() ),
 							get_the_content(),
 						),
 					),
@@ -135,5 +135,7 @@ function register_block_styles() {
 		}
 		wp_reset_postdata();
 	}
+
+	return $block_content;
 }
-add_action( 'init', __NAMESPACE__ . '\register_block_styles' );
+add_action( 'render_block', __NAMESPACE__ . '\register_block_styles_on_render', 10, 2 );

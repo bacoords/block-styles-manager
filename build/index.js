@@ -2651,7 +2651,7 @@ function EditBlockStyle({
     const args = {
       title: blockStyle.title,
       content: blockStyle.content,
-      slug: blockStyle.slug.replace("is-style-", ""),
+      slug: blockStyle.slug,
       status: "publish",
       meta: {
         block_types: (_blockStyle$meta$bloc = blockStyle.meta.block_types) !== null && _blockStyle$meta$bloc !== void 0 ? _blockStyle$meta$bloc : []
@@ -2663,16 +2663,18 @@ function EditBlockStyle({
     }
     const savedRecord = await saveEntityRecord("postType", "wpdev_block_style", args);
     if (savedRecord) {
-      const [transformed] = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.transformStyles)([{
-        css: blockStyle.content
-      }], ".editor-styles-wrapper");
-      blockStyle.meta.block_types.forEach(blockType => {
-        (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_7__.registerBlockStyle)(blockType, {
-          name: blockStyle.slug.replace("is-style-", ""),
-          label: (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__.decodeEntities)(blockStyle.title)
-        });
-      });
-      console.log(transformed);
+      // const [transformed] = transformStyles(
+      // 	[{ css: blockStyle.content }],
+      // 	".editor-styles-wrapper",
+      // );
+      // blockStyle.meta.block_types.forEach((blockType) => {
+      // 	registerBlockStyle(blockType, {
+      // 		name: blockStyle.slug.replace("is-style-", ""),
+      // 		label: decodeEntities(blockStyle.title),
+      // 	});
+      // });
+
+      // console.log(transformed);
       closeForm();
     }
   };
@@ -2689,7 +2691,7 @@ function EditBlockStyle({
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Class"),
     value: (_blockStyle$slug = blockStyle.slug) !== null && _blockStyle$slug !== void 0 ? _blockStyle$slug : "",
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("This is the class name that will be added to the block, and will always be prefixed with .is-style-"),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("This is the class name that will be added to the block."),
     onChange: slug => setBlockStyle({
       ...blockStyle,
       slug
@@ -2785,7 +2787,7 @@ function ViewBlockStyles({
       render: ({
         item
       }) => {
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, `.is-style-${item.slug}`);
+        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", null, `.${item.slug}`);
       },
       header: "Class",
       id: "slug",
@@ -2967,7 +2969,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * Mount the main Block Styles Manager Plugin Component
- * @returns
+ * @returns {Component} BlockStylesManagerPlugin
  */
 const BlockStylesManagerPlugin = props => {
   const {
@@ -3003,14 +3005,14 @@ const BlockStylesManagerPlugin = props => {
   const newBlockStyle = {
     id: 0,
     title: "New Block Style",
-    slug: "is-style-new-block-style",
+    slug: "new-block-style",
     content: "selector {\n  opacity: 0.5;\n}",
     meta: {
       block_types: ["core/group"]
     }
   };
   const filterSelector = (css, record) => {
-    return css.replace(/selector/g, `.is-style-${record.slug}`);
+    return css.replace(/selector/g, `.${record.slug}`);
   };
 
   // Need to move this out so it loads on the first render.
@@ -3053,7 +3055,7 @@ const BlockStylesManagerPlugin = props => {
     value: attributes.wpdevBlockStyles,
     options: blockStyles.map(blockStyle => ({
       label: blockStyle.title.rendered,
-      value: `is-style-` + blockStyle.slug
+      value: blockStyle.slug
     })),
     multiple: true,
     onChange: saveStylesInAttribute

@@ -24,7 +24,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 		const args = {
 			title: blockStyle.title,
 			content: blockStyle.content,
-			slug: blockStyle.slug.replace("is-style-", ""),
+			slug: blockStyle.slug,
 			status: "publish",
 			meta: {
 				block_types: blockStyle.meta.block_types ?? [],
@@ -42,18 +42,18 @@ function EditBlockStyle({ attributes, closeForm }) {
 			args,
 		);
 		if (savedRecord) {
-			const [transformed] = transformStyles(
-				[{ css: blockStyle.content }],
-				".editor-styles-wrapper",
-			);
-			blockStyle.meta.block_types.forEach((blockType) => {
-				registerBlockStyle(blockType, {
-					name: blockStyle.slug.replace("is-style-", ""),
-					label: decodeEntities(blockStyle.title),
-				});
-			});
+			// const [transformed] = transformStyles(
+			// 	[{ css: blockStyle.content }],
+			// 	".editor-styles-wrapper",
+			// );
+			// blockStyle.meta.block_types.forEach((blockType) => {
+			// 	registerBlockStyle(blockType, {
+			// 		name: blockStyle.slug.replace("is-style-", ""),
+			// 		label: decodeEntities(blockStyle.title),
+			// 	});
+			// });
 
-			console.log(transformed);
+			// console.log(transformed);
 			closeForm();
 		}
 	};
@@ -77,9 +77,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 					<TextControl
 						label={__("Class")}
 						value={blockStyle.slug ?? ""}
-						help={__(
-							"This is the class name that will be added to the block, and will always be prefixed with .is-style-",
-						)}
+						help={__("This is the class name that will be added to the block.")}
 						onChange={(slug) =>
 							setBlockStyle({
 								...blockStyle,

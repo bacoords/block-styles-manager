@@ -16,7 +16,7 @@ import "./style.scss";
 
 /**
  * Mount the main Block Styles Manager Plugin Component
- * @returns
+ * @returns {Component} BlockStylesManagerPlugin
  */
 const BlockStylesManagerPlugin = (props) => {
 	const { attributes, setAttributes, name } = props;
@@ -50,14 +50,14 @@ const BlockStylesManagerPlugin = (props) => {
 	const newBlockStyle = {
 		id: 0,
 		title: "New Block Style",
-		slug: "is-style-new-block-style",
+		slug: "new-block-style",
 		content: "selector {\n  opacity: 0.5;\n}",
 		meta: {
 			block_types: ["core/group"],
 		},
 	};
 	const filterSelector = (css, record) => {
-		return css.replace(/selector/g, `.is-style-${record.slug}`);
+		return css.replace(/selector/g, `.${record.slug}`);
 	};
 
 	// Need to move this out so it loads on the first render.
@@ -115,7 +115,7 @@ const BlockStylesManagerPlugin = (props) => {
 						value={attributes.wpdevBlockStyles}
 						options={blockStyles.map((blockStyle) => ({
 							label: blockStyle.title.rendered,
-							value: `is-style-` + blockStyle.slug,
+							value: blockStyle.slug,
 						}))}
 						multiple={true}
 						onChange={saveStylesInAttribute}
