@@ -103,7 +103,7 @@ const BlockStylesManagerPlugin = (props) => {
 	};
 
 	return (
-		<InspectorControls>
+		<InspectorControls group="styles">
 			<PanelBody
 				title={__("Block Styles Manager")}
 				initialOpen={true}
