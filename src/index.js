@@ -1,16 +1,19 @@
 import { styles } from "@wordpress/icons";
 import { createHigherOrderComponent } from "@wordpress/compose";
 import { useState, useEffect } from "@wordpress/element";
-import { useEntityRecords } from "@wordpress/core-data";
+
 import { PanelBody, Modal, Button, PanelRow } from "@wordpress/components";
 import { InspectorControls } from "@wordpress/block-editor";
 import { addFilter } from "@wordpress/hooks";
 import { __ } from "@wordpress/i18n";
+import { useSelect } from "@wordpress/data";
 
 import { MultiSelectControl } from "@codeamp/block-components";
 import ViewBlockStyles from "./ViewBlockStyles";
 import EditBlockStyle from "./EditBlockStyle";
 import "./filters.js";
+
+import { store } from "./store";
 
 import "./style.scss";
 
@@ -23,12 +26,14 @@ const BlockStylesManagerPlugin = (props) => {
 	const [modalView, setModalView] = useState("");
 	const [currentBlockStyle, setCurrentBlockStyle] = useState(null);
 	const [blockStyles, setBlockStyles] = useState([]);
+	const [allBlockStyles, setAllBlockStyles] = useState([]);
 
-	const { records, hasResolved } = useEntityRecords(
-		"postType",
-		"wpdev_block_style",
-		{ per_page: -1 },
-	);
+	const { records, hasResolved } = useSelect((select) => {
+		return {
+			records: select(store).getBlockStyles(),
+			hasResolved: select(store).hasFinishedResolution("getBlockStyles"),
+		};
+	}, []);
 
 	const launchEditForm = (id) => {
 		let blockStyle = records.find(
@@ -36,8 +41,8 @@ const BlockStylesManagerPlugin = (props) => {
 		);
 		setCurrentBlockStyle({
 			...blockStyle,
-			title: blockStyle.title.raw,
-			content: blockStyle.content.raw,
+			title: blockStyle.title,
+			content: blockStyle.content,
 		});
 		setModalView("edit");
 	};
@@ -62,15 +67,16 @@ const BlockStylesManagerPlugin = (props) => {
 
 	// Need to move this out so it loads on the first render.
 	useEffect(() => {
-		if (records) {
-			console.log(records);
+		if (hasResolved && records.length > 0) {
+			setAllBlockStyles(records);
+
 			setBlockStyles(
 				records.filter((record) => record.meta.block_types.includes(name)),
 			);
 			// Add records CSS to iframe
 			let css = "";
 			records.forEach((record) => {
-				css += filterSelector(record.content.raw, record);
+				css += filterSelector(record.content, record);
 			});
 			const style = document.createElement("style");
 			style.innerHTML = css;
@@ -83,7 +89,7 @@ const BlockStylesManagerPlugin = (props) => {
 
 			destination.appendChild(style);
 		}
-	}, [records]);
+	}, [records, hasResolved]);
 
 	const AddNewButton = () => {
 		if ("list" !== modalView) {
@@ -114,7 +120,7 @@ const BlockStylesManagerPlugin = (props) => {
 						label={__("Add Styles")}
 						value={attributes.wpdevBlockStyles}
 						options={blockStyles.map((blockStyle) => ({
-							label: blockStyle.title.rendered,
+							label: blockStyle.title,
 							value: blockStyle.slug,
 						}))}
 						multiple={true}
@@ -147,7 +153,7 @@ const BlockStylesManagerPlugin = (props) => {
 					{modalView === "list" && (
 						<ViewBlockStyles
 							launchEditForm={launchEditForm}
-							records={records}
+							records={allBlockStyles}
 							hasResolved={hasResolved}
 						/>
 					)}

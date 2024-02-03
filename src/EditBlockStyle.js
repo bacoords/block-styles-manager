@@ -14,13 +14,16 @@ import { registerBlockStyle } from "@wordpress/blocks";
 import { decodeEntities } from "@wordpress/html-entities";
 import { MultiSelectControl } from "@codeamp/block-components";
 
+import { store } from "./store";
+
 function EditBlockStyle({ attributes, closeForm }) {
 	const [blockStyle, setBlockStyle] = useState(attributes);
 
 	const [blockTypes, setBlockTypes] = useState(wp.blocks.getBlockTypes());
 
-	const { saveEntityRecord } = useDispatch(coreDataStore);
-	const saveBlockStyle = async () => {
+	const { saveBlockStyle } = useDispatch(store);
+
+	const saveBlockStyleHandler = async () => {
 		const args = {
 			title: blockStyle.title,
 			content: blockStyle.content,
@@ -36,24 +39,8 @@ function EditBlockStyle({ attributes, closeForm }) {
 		if (blockStyle.id) {
 			args.id = blockStyle.id;
 		}
-		const savedRecord = await saveEntityRecord(
-			"postType",
-			"wpdev_block_style",
-			args,
-		);
+		const savedRecord = await saveBlockStyle(args);
 		if (savedRecord) {
-			// const [transformed] = transformStyles(
-			// 	[{ css: blockStyle.content }],
-			// 	".editor-styles-wrapper",
-			// );
-			// blockStyle.meta.block_types.forEach((blockType) => {
-			// 	registerBlockStyle(blockType, {
-			// 		name: blockStyle.slug.replace("is-style-", ""),
-			// 		label: decodeEntities(blockStyle.title),
-			// 	});
-			// });
-
-			// console.log(transformed);
 			closeForm();
 		}
 	};
@@ -120,7 +107,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 			/>
 			<Flex>
 				<FlexItem>
-					<Button variant="primary" onClick={saveBlockStyle}>
+					<Button variant="primary" onClick={saveBlockStyleHandler}>
 						{__("Save Block Style")}
 					</Button>
 				</FlexItem>

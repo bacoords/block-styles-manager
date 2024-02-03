@@ -2626,6 +2626,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _codeamp_block_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @codeamp/block-components */ "./node_modules/@codeamp/block-components/dist/index.js");
 /* harmony import */ var _codeamp_block_components__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./store */ "./src/store/index.js");
+
 
 
 
@@ -2644,9 +2646,9 @@ function EditBlockStyle({
   const [blockStyle, setBlockStyle] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(attributes);
   const [blockTypes, setBlockTypes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(wp.blocks.getBlockTypes());
   const {
-    saveEntityRecord
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.store);
-  const saveBlockStyle = async () => {
+    saveBlockStyle
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)(_store__WEBPACK_IMPORTED_MODULE_10__.store);
+  const saveBlockStyleHandler = async () => {
     var _blockStyle$meta$bloc;
     const args = {
       title: blockStyle.title,
@@ -2661,20 +2663,8 @@ function EditBlockStyle({
     if (blockStyle.id) {
       args.id = blockStyle.id;
     }
-    const savedRecord = await saveEntityRecord("postType", "wpdev_block_style", args);
+    const savedRecord = await saveBlockStyle(args);
     if (savedRecord) {
-      // const [transformed] = transformStyles(
-      // 	[{ css: blockStyle.content }],
-      // 	".editor-styles-wrapper",
-      // );
-      // blockStyle.meta.block_types.forEach((blockType) => {
-      // 	registerBlockStyle(blockType, {
-      // 		name: blockStyle.slug.replace("is-style-", ""),
-      // 		label: decodeEntities(blockStyle.title),
-      // 	});
-      // });
-
-      // console.log(transformed);
       closeForm();
     }
   };
@@ -2721,7 +2711,7 @@ function EditBlockStyle({
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     variant: "primary",
-    onClick: saveBlockStyle
+    onClick: saveBlockStyleHandler
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Save Block Style"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     isDestructive: true,
     onClick: closeForm
@@ -2761,6 +2751,7 @@ function ViewBlockStyles({
   records,
   hasResolved
 }) {
+  console.log(records);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hasResolved && records.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_dataviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
     data: records,
     getItemId: item => {
@@ -2776,7 +2767,7 @@ function ViewBlockStyles({
         return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
           variant: "link",
           onClick: () => launchEditForm(item.id)
-        }, (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_2__.decodeEntities)(item.title?.rendered) || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("(no title)")));
+        }, (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_2__.decodeEntities)(item.title) || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("(no title)")));
       },
       header: "Title",
       id: "title",
@@ -2931,27 +2922,29 @@ const addCustomBlockClassToSave = (props, block, attributes) => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/styles.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/styles.js");
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _codeamp_block_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @codeamp/block-components */ "./node_modules/@codeamp/block-components/dist/index.js");
 /* harmony import */ var _codeamp_block_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _ViewBlockStyles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ViewBlockStyles */ "./src/ViewBlockStyles.js");
 /* harmony import */ var _EditBlockStyle__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./EditBlockStyle */ "./src/EditBlockStyle.js");
 /* harmony import */ var _filters_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./filters.js */ "./src/filters.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store */ "./src/store/index.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+
 
 
 
@@ -2980,18 +2973,22 @@ const BlockStylesManagerPlugin = props => {
   const [modalView, setModalView] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)("");
   const [currentBlockStyle, setCurrentBlockStyle] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
   const [blockStyles, setBlockStyles] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
+  const [allBlockStyles, setAllBlockStyles] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
   const {
     records,
     hasResolved
-  } = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_3__.useEntityRecords)("postType", "wpdev_block_style", {
-    per_page: -1
-  });
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_7__.useSelect)(select => {
+    return {
+      records: select(_store__WEBPACK_IMPORTED_MODULE_12__.store).getBlockStyles(),
+      hasResolved: select(_store__WEBPACK_IMPORTED_MODULE_12__.store).hasFinishedResolution("getBlockStyles")
+    };
+  }, []);
   const launchEditForm = id => {
     let blockStyle = records.find(blockStyle => blockStyle.id === parseInt(id));
     setCurrentBlockStyle({
       ...blockStyle,
-      title: blockStyle.title.raw,
-      content: blockStyle.content.raw
+      title: blockStyle.title,
+      content: blockStyle.content
     });
     setModalView("edit");
   };
@@ -3017,14 +3014,14 @@ const BlockStylesManagerPlugin = props => {
 
   // Need to move this out so it loads on the first render.
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-    if (records) {
+    if (hasResolved && records.length > 0) {
       var _window$parent$docume;
-      console.log(records);
+      setAllBlockStyles(records);
       setBlockStyles(records.filter(record => record.meta.block_types.includes(name)));
       // Add records CSS to iframe
       let css = "";
       records.forEach(record => {
-        css += filterSelector(record.content.raw, record);
+        css += filterSelector(record.content, record);
       });
       const style = document.createElement("style");
       style.innerHTML = css;
@@ -3033,42 +3030,42 @@ const BlockStylesManagerPlugin = props => {
       destination.querySelector("#wpdev-block-styles")?.remove();
       destination.appendChild(style);
     }
-  }, [records]);
+  }, [records, hasResolved]);
   const AddNewButton = () => {
     if ("list" !== modalView) {
       return null;
     }
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       onClick: () => {
         console.log("clicked");
         setModalView("new");
       },
       variant: "primary"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Add New Block Style"));
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add New Block Style"));
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
     group: "styles"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Block Styles Manager"),
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Block Styles Manager"),
     initialOpen: true,
     className: "wpdev-block-styles-manager--panel"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_8__.MultiSelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Add Styles"),
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_8__.MultiSelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add Styles"),
     value: attributes.wpdevBlockStyles,
     options: blockStyles.map(blockStyle => ({
-      label: blockStyle.title.rendered,
+      label: blockStyle.title,
       value: blockStyle.slug
     })),
     multiple: true,
     onChange: saveStylesInAttribute
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_13__["default"],
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
     onClick: () => setModalView("list"),
     "aria-expanded": "" !== modalView,
     "aria-haspopup": "dialog",
     variant: "secondary"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Manage Block Styles")))), "" !== modalView && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Modal, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Block Styles Manager"),
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Manage Block Styles")))), "" !== modalView && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Block Styles Manager"),
     size: "large",
     headerActions: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(AddNewButton, null),
     isFullScreen: true,
@@ -3078,14 +3075,14 @@ const BlockStylesManagerPlugin = props => {
     }
   }, modalView === "list" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ViewBlockStyles__WEBPACK_IMPORTED_MODULE_9__["default"], {
     launchEditForm: launchEditForm,
-    records: records,
+    records: allBlockStyles,
     hasResolved: hasResolved
-  }), modalView === "edit" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("Edit Block Style")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), modalView === "edit" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Edit Block Style")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_10__["default"], {
     attributes: currentBlockStyle,
     closeForm: () => {
       setModalView("list");
     }
-  })), modalView === "new" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)("New Block Style")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  })), modalView === "new" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("New Block Style")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_EditBlockStyle__WEBPACK_IMPORTED_MODULE_10__["default"], {
     attributes: newBlockStyle,
     closeForm: () => {
       setModalView("list");
@@ -3103,7 +3100,7 @@ const BlockStylesManagerPlugin = props => {
  *
  * @see https://developer.wordpress.org/block-editor/developers/filters/block-filters/#editor-blockedit
  */
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.addFilter)("editor.BlockEdit", "wpdev/block-styles-manager-add-styles-manager", (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__.createHigherOrderComponent)(BlockEdit => {
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_5__.addFilter)("editor.BlockEdit", "wpdev/block-styles-manager-add-styles-manager", (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__.createHigherOrderComponent)(BlockEdit => {
   return props => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
       ...props
@@ -3112,6 +3109,104 @@ const BlockStylesManagerPlugin = props => {
     }));
   };
 }));
+
+/***/ }),
+
+/***/ "./src/store/index.js":
+/*!****************************!*\
+  !*** ./src/store/index.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   store: () => (/* binding */ store)
+/* harmony export */ });
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const DEFAULT_STATE = {
+  block_styles: []
+};
+const STORE_NAME = "wpdev/block-styles";
+const actions = {
+  hydrate(block_styles) {
+    return {
+      type: "GET_BLOCK_STYLES",
+      block_styles
+    };
+  },
+  saveBlockStyle(block_style) {
+    return {
+      type: "SAVE_BLOCK_STYLE",
+      block_style
+    };
+  },
+  fetchFromAPI(path) {
+    return {
+      type: "FETCH_FROM_API",
+      path
+    };
+  }
+};
+const selectors = {
+  getBlockStyles(state) {
+    return state.block_styles;
+  }
+};
+const reducer = (state = DEFAULT_STATE, action) => {
+  switch (action.type) {
+    case "GET_BLOCK_STYLES":
+      return {
+        ...state,
+        block_styles: action.block_styles
+      };
+    case "SAVE_BLOCK_STYLE":
+      return {
+        ...state,
+        block_styles: {
+          ...state.block_styles,
+          [action.block_style.id]: action.block_style
+        }
+      };
+    default:
+      return state;
+  }
+};
+const controls = {
+  FETCH_FROM_API(action) {
+    return _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      path: action.path
+    });
+  }
+};
+const resolvers = {
+  *getBlockStyles() {
+    const blockStyles = yield actions.fetchFromAPI("/block-styles-manager/v1/block-styles");
+    return actions.hydrate(blockStyles);
+  },
+  *saveBlockStyle(action) {
+    const blockStyle = yield actions.fetchFromAPI({
+      path: "/block-styles-manager/v1/block-styles",
+      method: "POST",
+      data: action.block_style
+    });
+    return actions.saveBlockStyle(blockStyle);
+  }
+};
+const store = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.createReduxStore)(STORE_NAME, {
+  reducer,
+  actions,
+  selectors,
+  controls,
+  resolvers
+});
+(0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.register)(store);
+
 
 /***/ }),
 
@@ -3205,6 +3300,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 module.exports = window["React"];
+
+/***/ }),
+
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["apiFetch"];
 
 /***/ }),
 

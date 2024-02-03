@@ -5,6 +5,7 @@ import { __ } from "@wordpress/i18n";
 import { DataViews } from "@wordpress/dataviews";
 
 function ViewBlockStyles({ launchEditForm, records, hasResolved }) {
+	console.log(records);
 	return (
 		<>
 			{hasResolved && records.length > 0 && (
@@ -25,7 +26,7 @@ function ViewBlockStyles({ launchEditForm, records, hasResolved }) {
 											variant="link"
 											onClick={() => launchEditForm(item.id)}
 										>
-											{decodeEntities(item.title?.rendered) || __("(no title)")}
+											{decodeEntities(item.title) || __("(no title)")}
 										</Button>
 									</h4>
 								);
