@@ -15,16 +15,30 @@ const actions = {
 		};
 	},
 
-	saveBlockStyle(block_style) {
+	*saveBlockStyle(block_style) {
+		console.log("saveBlockStyle", block_style);
+		yield actions.updateInAPI(
+			"/block-styles-manager/v1/block-styles/" + block_style.id,
+			block_style,
+		);
 		return {
 			type: "SAVE_BLOCK_STYLE",
 			block_style,
 		};
 	},
+
 	fetchFromAPI(path) {
 		return {
 			type: "FETCH_FROM_API",
 			path,
+		};
+	},
+
+	updateInAPI(path, data) {
+		return {
+			type: "UPDATE_IN_API",
+			path,
+			data,
 		};
 	},
 };
@@ -45,10 +59,12 @@ const reducer = (state = DEFAULT_STATE, action) => {
 		case "SAVE_BLOCK_STYLE":
 			return {
 				...state,
-				block_styles: {
-					...state.block_styles,
-					[action.block_style.id]: action.block_style,
-				},
+				block_styles: [
+					...state.block_styles.filter(
+						(style) => style.id !== action.block_style.id,
+					),
+					action.block_style,
+				],
 			};
 		default:
 			return state;
@@ -57,7 +73,17 @@ const reducer = (state = DEFAULT_STATE, action) => {
 
 const controls = {
 	FETCH_FROM_API(action) {
+		console.log("FETCH_FROM_API", action);
 		return apiFetch({ path: action.path });
+	},
+
+	UPDATE_IN_API(action) {
+		console.log("UPDATE_IN_API", action);
+		return apiFetch({
+			path: action.path,
+			method: "POST",
+			data: action.data,
+		});
 	},
 };
 
@@ -70,12 +96,13 @@ const resolvers = {
 	},
 
 	*saveBlockStyle(action) {
+		console.log("saveBlockStyle", action);
 		const blockStyle = yield actions.fetchFromAPI({
-			path: "/block-styles-manager/v1/block-styles",
+			path: "/block-styles-manager/v1/block-styles/" + action.block_style.id,
 			method: "POST",
 			data: action.block_style,
 		});
-		return actions.saveBlockStyle(blockStyle);
+		return actions.save(blockStyle);
 	},
 };
 

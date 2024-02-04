@@ -8,10 +8,6 @@ import {
 import { __ } from "@wordpress/i18n";
 import { useDispatch } from "@wordpress/data";
 import { useState } from "@wordpress/element";
-import { store as coreDataStore } from "@wordpress/core-data";
-import { transformStyles } from "@wordpress/block-editor";
-import { registerBlockStyle } from "@wordpress/blocks";
-import { decodeEntities } from "@wordpress/html-entities";
 import { MultiSelectControl } from "@codeamp/block-components";
 
 import { store } from "./store";
@@ -39,7 +35,10 @@ function EditBlockStyle({ attributes, closeForm }) {
 		if (blockStyle.id) {
 			args.id = blockStyle.id;
 		}
-		const savedRecord = await saveBlockStyle(args);
+		const savedRecord = saveBlockStyle(args).then((res) => {
+			console.log("savedRecord", res);
+		});
+
 		if (savedRecord) {
 			closeForm();
 		}

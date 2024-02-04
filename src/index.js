@@ -36,7 +36,7 @@ const BlockStylesManagerPlugin = (props) => {
 	}, []);
 
 	const launchEditForm = (id) => {
-		let blockStyle = records.find(
+		let blockStyle = allBlockStyles.find(
 			(blockStyle) => blockStyle.id === parseInt(id),
 		);
 		setCurrentBlockStyle({

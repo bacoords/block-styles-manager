@@ -71,6 +71,8 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\register_rest_api_endpoints' );
  * @return WP_REST_Response
  **/
 function get_block_styles( $request ) {
+	$params = $request->get_params();
+
 	$block_styles = new \WP_Query(
 		array(
 			'post_type'      => 'wpdev_block_style',
@@ -106,6 +108,9 @@ function get_block_styles( $request ) {
  * @return WP_REST_Response
  **/
 function get_block_style( $request ) {
+
+	$params = $request->get_params();
+
 	$block_style = get_post( $request['id'] );
 
 	if ( ! $block_style ) {
@@ -134,24 +139,24 @@ function get_block_style( $request ) {
  * @return WP_REST_Response
  **/
 function update_block_style( $request ) {
-	return new \WP_Error( 'not_implemented', 'Not implemented', array( 'status' => 501 ) );
-	// $block_style = get_post( $request['id'] );
 
-	// if ( ! $block_style ) {
-	// return new \WP_Error( 'not_found', 'Block style not found', array( 'status' => 404 ) );
-	// }
+	$block_style = get_post( $request['id'] );
 
-	// $block_style->to_array();
+	if ( ! $block_style ) {
+		return new \WP_Error( 'not_found', 'Block style not found', array( 'status' => 404 ) );
+	}
 
-	// $block_style_data = json_decode( $request->get_body(), true );
+	$block_style = $block_style->to_array();
 
-	// $block_style['post_title']   = $block_style_data['title'];
-	// $block_style['post_content'] = $block_style_data['content'];
-	// $block_style['post_name']    = $block_style_data['slug'];
+	$block_style_data = json_decode( $request->get_body(), true );
 
-	// wp_update_post( $block_style );
+	$block_style['post_title']   = $block_style_data['title'];
+	$block_style['post_content'] = $block_style_data['content'];
+	$block_style['post_name']    = $block_style_data['slug'];
 
-	// update_post_meta( $block_style->ID, 'block_types', $block_style_data['meta']['block_types'] );
+	wp_update_post( $block_style );
 
-	// return $block_style;
+	update_post_meta( $block_style['ID'], 'block_types', $block_style_data['meta']['block_types'] );
+
+	return $block_style;
 }
