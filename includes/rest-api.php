@@ -27,6 +27,18 @@ function register_rest_api_endpoints() {
 
 	register_rest_route(
 		'block-styles-manager/v1',
+		'/block-styles',
+		array(
+			'methods'             => 'POST',
+			'callback'            => __NAMESPACE__ . '\create_block_style',
+			'permission_callback' => function () {
+				return current_user_can( 'edit_posts' );
+			},
+		)
+	);
+
+	register_rest_route(
+		'block-styles-manager/v1',
 		'/block-styles/(?P<id>\d+)',
 		array(
 			'methods'             => 'GET',
@@ -109,8 +121,6 @@ function get_block_styles( $request ) {
  **/
 function get_block_style( $request ) {
 
-	$params = $request->get_params();
-
 	$block_style = get_post( $request['id'] );
 
 	if ( ! $block_style ) {
@@ -131,6 +141,36 @@ function get_block_style( $request ) {
 }
 
 
+/**
+ * Create a block style.
+ *
+ * @param WP_REST_Request $request The REST request object.
+ * @return WP_REST_Response
+ **/
+function create_block_style( $request ) {
+
+	$block_style_data = json_decode( $request->get_body(), true );
+
+	$block_style_id = wp_insert_post(
+		array(
+			'post_type'    => 'wpdev_block_style',
+			'post_title'   => sanitize_text_field( $block_style_data['title'] ),
+			'post_content' => sanitize_textarea_field( $block_style_data['content'] ),
+			'post_name'    => sanitize_text_field( $block_style_data['slug'] ),
+			'post_status'  => 'publish',
+			'meta_input'   => array(
+				'block_types' => $block_style_data['meta']['block_types'],
+			),
+		)
+	);
+
+	if ( is_wp_error( $block_style_id ) ) {
+		return $block_style_id;
+	}
+
+	return new \WP_REST_Response( get_block_style( array( 'id' => $block_style_id ) ), 201 );
+}
+
 
 /**
  * Update a block style.
@@ -150,13 +190,14 @@ function update_block_style( $request ) {
 
 	$block_style_data = json_decode( $request->get_body(), true );
 
-	$block_style['post_title']   = $block_style_data['title'];
-	$block_style['post_content'] = $block_style_data['content'];
-	$block_style['post_name']    = $block_style_data['slug'];
+	$block_style['post_title']   = sanitize_text_field( $block_style_data['title'] );
+	$block_style['post_content'] = sanitize_textarea_field( $block_style_data['content'] );
+	$block_style['post_name']    = sanitize_text_field( $block_style_data['slug'] );
+	$block_style['meta_input']   = array(
+		'block_types' => $block_style_data['meta']['block_types'],
+	);
 
 	wp_update_post( $block_style );
-
-	update_post_meta( $block_style['ID'], 'block_types', $block_style_data['meta']['block_types'] );
 
 	return $block_style;
 }

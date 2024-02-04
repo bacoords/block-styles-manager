@@ -17,10 +17,17 @@ const actions = {
 
 	*saveBlockStyle(block_style) {
 		console.log("saveBlockStyle", block_style);
-		yield actions.updateInAPI(
-			"/block-styles-manager/v1/block-styles/" + block_style.id,
-			block_style,
-		);
+		if (block_style.id === undefined || block_style.id === 0) {
+			block_style = yield actions.updateInAPI(
+				"/block-styles-manager/v1/block-styles",
+				block_style,
+			);
+		} else {
+			yield actions.updateInAPI(
+				"/block-styles-manager/v1/block-styles/" + block_style.id,
+				block_style,
+			);
+		}
 		return {
 			type: "SAVE_BLOCK_STYLE",
 			block_style,
@@ -57,6 +64,7 @@ const reducer = (state = DEFAULT_STATE, action) => {
 				block_styles: action.block_styles,
 			};
 		case "SAVE_BLOCK_STYLE":
+			console.log("SAVE_BLOCK_STYLE", action);
 			return {
 				...state,
 				block_styles: [
