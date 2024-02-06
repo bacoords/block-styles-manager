@@ -25,9 +25,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 			content: blockStyle.content,
 			slug: blockStyle.slug,
 			status: "publish",
-			meta: {
-				block_types: blockStyle.meta.block_types ?? [],
-			},
+			block_types: blockStyle.block_types ?? [],
 		};
 
 		console.log(args);
@@ -75,7 +73,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 			</Flex>
 			<MultiSelectControl
 				label={__("Supported Block Types")}
-				value={blockStyle.meta?.block_types ?? []}
+				value={blockStyle.block_types ?? []}
 				options={blockTypes.map((blockType) => ({
 					label: blockType.title,
 					value: blockType.name,
@@ -84,10 +82,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 				onChange={(block_types) =>
 					setBlockStyle({
 						...blockStyle,
-						meta: {
-							...blockStyle.meta,
-							block_types: block_types,
-						},
+						block_types: block_types,
 					})
 				}
 			/>

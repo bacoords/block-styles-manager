@@ -2630,22 +2630,20 @@ function EditBlockStyle({
   attributes,
   closeForm
 }) {
-  var _blockStyle$title, _blockStyle$slug, _blockStyle$meta$bloc2, _blockStyle$content;
+  var _blockStyle$title, _blockStyle$slug, _blockStyle$block_typ2, _blockStyle$content;
   const [blockStyle, setBlockStyle] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(attributes);
   const [blockTypes, setBlockTypes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(wp.blocks.getBlockTypes());
   const {
     saveBlockStyle
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)(_store__WEBPACK_IMPORTED_MODULE_6__.store);
   const saveBlockStyleHandler = async () => {
-    var _blockStyle$meta$bloc;
+    var _blockStyle$block_typ;
     const args = {
       title: blockStyle.title,
       content: blockStyle.content,
       slug: blockStyle.slug,
       status: "publish",
-      meta: {
-        block_types: (_blockStyle$meta$bloc = blockStyle.meta.block_types) !== null && _blockStyle$meta$bloc !== void 0 ? _blockStyle$meta$bloc : []
-      }
+      block_types: (_blockStyle$block_typ = blockStyle.block_types) !== null && _blockStyle$block_typ !== void 0 ? _blockStyle$block_typ : []
     };
     console.log(args);
     if (blockStyle.id) {
@@ -2678,7 +2676,7 @@ function EditBlockStyle({
     })
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_5__.MultiSelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Supported Block Types"),
-    value: (_blockStyle$meta$bloc2 = blockStyle.meta?.block_types) !== null && _blockStyle$meta$bloc2 !== void 0 ? _blockStyle$meta$bloc2 : [],
+    value: (_blockStyle$block_typ2 = blockStyle.block_types) !== null && _blockStyle$block_typ2 !== void 0 ? _blockStyle$block_typ2 : [],
     options: blockTypes.map(blockType => ({
       label: blockType.title,
       value: blockType.name
@@ -2686,10 +2684,7 @@ function EditBlockStyle({
     multiple: true,
     onChange: block_types => setBlockStyle({
       ...blockStyle,
-      meta: {
-        ...blockStyle.meta,
-        block_types: block_types
-      }
+      block_types: block_types
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextareaControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("CSS"),
@@ -2779,7 +2774,7 @@ function ViewBlockStyles({
       render: ({
         item
       }) => {
-        return item.meta.block_types?.map((blockType, i) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
+        return item.block_types?.map((blockType, i) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("code", {
           key: i
         }, blockType));
       },
@@ -2974,7 +2969,10 @@ const BlockStylesManagerPlugin = props => {
     };
   }, []);
   const launchEditForm = id => {
-    let blockStyle = allBlockStyles.find(blockStyle => blockStyle.id === parseInt(id));
+    let blockStyle = allBlockStyles.find(blockStyle => blockStyle.id === id);
+    if (!blockStyle) {
+      return;
+    }
     setCurrentBlockStyle({
       ...blockStyle,
       title: blockStyle.title,
@@ -2993,13 +2991,8 @@ const BlockStylesManagerPlugin = props => {
     id: 0,
     title: "New Block Style",
     slug: "new-block-style",
-    content: "selector {\n  opacity: 0.5;\n}",
-    meta: {
-      block_types: ["core/group"]
-    }
-  };
-  const filterSelector = (css, record) => {
-    return css.replace(/selector/g, `.${record.slug}`);
+    content: ".new-block-style {\n  opacity: 0.5;\n}",
+    block_types: ["core/group"]
   };
 
   // Need to move this out so it loads on the first render.
@@ -3007,11 +3000,11 @@ const BlockStylesManagerPlugin = props => {
     if (hasResolved && records.length > 0) {
       var _window$parent$docume;
       setAllBlockStyles(records);
-      setBlockStyles(records.filter(record => record.meta.block_types.includes(name)));
+      setBlockStyles(records.filter(record => record.block_types.includes(name)));
       // Add records CSS to iframe
       let css = "";
       records.forEach(record => {
-        css += filterSelector(record.content, record);
+        css += record.content + "\n";
       });
       const style = document.createElement("style");
       style.innerHTML = css;

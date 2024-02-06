@@ -36,9 +36,10 @@ const BlockStylesManagerPlugin = (props) => {
 	}, []);
 
 	const launchEditForm = (id) => {
-		let blockStyle = allBlockStyles.find(
-			(blockStyle) => blockStyle.id === parseInt(id),
-		);
+		let blockStyle = allBlockStyles.find((blockStyle) => blockStyle.id === id);
+		if (!blockStyle) {
+			return;
+		}
 		setCurrentBlockStyle({
 			...blockStyle,
 			title: blockStyle.title,
@@ -56,13 +57,8 @@ const BlockStylesManagerPlugin = (props) => {
 		id: 0,
 		title: "New Block Style",
 		slug: "new-block-style",
-		content: "selector {\n  opacity: 0.5;\n}",
-		meta: {
-			block_types: ["core/group"],
-		},
-	};
-	const filterSelector = (css, record) => {
-		return css.replace(/selector/g, `.${record.slug}`);
+		content: ".new-block-style {\n  opacity: 0.5;\n}",
+		block_types: ["core/group"],
 	};
 
 	// Need to move this out so it loads on the first render.
@@ -71,12 +67,12 @@ const BlockStylesManagerPlugin = (props) => {
 			setAllBlockStyles(records);
 
 			setBlockStyles(
-				records.filter((record) => record.meta.block_types.includes(name)),
+				records.filter((record) => record.block_types.includes(name)),
 			);
 			// Add records CSS to iframe
 			let css = "";
 			records.forEach((record) => {
-				css += filterSelector(record.content, record);
+				css += record.content + "\n";
 			});
 			const style = document.createElement("style");
 			style.innerHTML = css;

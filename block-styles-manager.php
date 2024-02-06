@@ -20,6 +20,7 @@ define( 'BLOCK_STYLES_MANAGER_VERSION', '0.1.0' );
 define( 'BLOCK_STYLES_MANAGER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BLOCK_STYLES_MANAGER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
+require_once BLOCK_STYLES_MANAGER_PLUGIN_DIR . 'includes/block-styles-data.php';
 require_once BLOCK_STYLES_MANAGER_PLUGIN_DIR . 'includes/cpt.php';
 require_once BLOCK_STYLES_MANAGER_PLUGIN_DIR . 'includes/enqueue.php';
 require_once BLOCK_STYLES_MANAGER_PLUGIN_DIR . 'includes/render.php';

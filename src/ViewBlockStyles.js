@@ -49,7 +49,7 @@ function ViewBlockStyles({ launchEditForm, records, hasResolved }) {
 							enableHiding: false,
 							getValue: function noRefCheck() {},
 							render: ({ item }) => {
-								return item.meta.block_types?.map((blockType, i) => (
+								return item.block_types?.map((blockType, i) => (
 									<code key={i}>{blockType}</code>
 								));
 							},

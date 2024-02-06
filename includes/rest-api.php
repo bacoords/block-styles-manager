@@ -85,31 +85,9 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\register_rest_api_endpoints' );
 function get_block_styles( $request ) {
 	$params = $request->get_params();
 
-	$block_styles = new \WP_Query(
-		array(
-			'post_type'      => 'wpdev_block_style',
-			'posts_per_page' => -1,
-		)
-	);
+	$block_styles = \BlockStylesManager\Data\get_block_styles();
 
-	$block_styles_data = array();
-
-	if ( $block_styles->have_posts() ) {
-		while ( $block_styles->have_posts() ) {
-			$block_styles->the_post();
-			$block_styles_data[] = array(
-				'id'      => get_the_ID(),
-				'title'   => get_the_title(),
-				'content' => get_the_content(),
-				'slug'    => get_post_field( 'post_name', get_post() ),
-				'meta'    => array(
-					'block_types' => get_post_meta( get_the_ID(), 'block_types', true ) ?? array(),
-				),
-			);
-		}
-	}
-
-	return $block_styles_data;
+	return $block_styles;
 }
 
 
@@ -121,23 +99,13 @@ function get_block_styles( $request ) {
  **/
 function get_block_style( $request ) {
 
-	$block_style = get_post( $request['id'] );
+	$block_style = \BlockStylesManager\Data\get_block_style( $request['id'] );
 
 	if ( ! $block_style ) {
 		return new \WP_Error( 'not_found', 'Block style not found', array( 'status' => 404 ) );
 	}
 
-	$block_style_data = array(
-		'id'      => $block_style->ID,
-		'title'   => $block_style->post_title,
-		'content' => $block_style->post_content,
-		'slug'    => $block_style->post_name,
-		'meta'    => array(
-			'block_types' => get_post_meta( $block_style->ID, 'block_types', true ) ?? array(),
-		),
-	);
-
-	return $block_style_data;
+	return $block_style;
 }
 
 
@@ -151,22 +119,7 @@ function create_block_style( $request ) {
 
 	$block_style_data = json_decode( $request->get_body(), true );
 
-	$block_style_id = wp_insert_post(
-		array(
-			'post_type'    => 'wpdev_block_style',
-			'post_title'   => sanitize_text_field( $block_style_data['title'] ),
-			'post_content' => sanitize_textarea_field( $block_style_data['content'] ),
-			'post_name'    => sanitize_text_field( $block_style_data['slug'] ),
-			'post_status'  => 'publish',
-			'meta_input'   => array(
-				'block_types' => $block_style_data['meta']['block_types'],
-			),
-		)
-	);
-
-	if ( is_wp_error( $block_style_id ) ) {
-		return $block_style_id;
-	}
+	$block_style_id = \BlockStylesManager\Data\create_block_style( $block_style_data );
 
 	return new \WP_REST_Response( get_block_style( array( 'id' => $block_style_id ) ), 201 );
 }
