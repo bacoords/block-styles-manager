@@ -23,7 +23,7 @@ function register_block_styles_on_render( $block_content, $block ) {
 	$block_styles = $block['attrs']['wpdevBlockStyles'];
 
 	if ( $block_styles ) {
-		$block_styles = \BlockStylesManager\Data\get_block_styles( array( 'name' => $block_styles ) );
+		$block_styles = \BlockStylesManager\Data\get_block_styles( array( 'slug' => $block_styles ) );
 		if ( count( $block_styles ) > 0 ) {
 			foreach ( $block_styles as $block_style ) {
 				foreach ( $block_style['block_types'] as $block_type ) {

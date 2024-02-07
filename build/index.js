@@ -2642,7 +2642,6 @@ function EditBlockStyle({
       title: blockStyle.title,
       content: blockStyle.content,
       slug: blockStyle.slug,
-      status: "publish",
       block_types: (_blockStyle$block_typ = blockStyle.block_types) !== null && _blockStyle$block_typ !== void 0 ? _blockStyle$block_typ : []
     };
     console.log(args);
@@ -2669,6 +2668,7 @@ function EditBlockStyle({
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Class"),
     value: (_blockStyle$slug = blockStyle.slug) !== null && _blockStyle$slug !== void 0 ? _blockStyle$slug : "",
+    readOnly: blockStyle.id !== 0,
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("This is the class name that will be added to the block."),
     onChange: slug => setBlockStyle({
       ...blockStyle,
@@ -3027,13 +3027,11 @@ const BlockStylesManagerPlugin = props => {
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add New Block Style"));
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, {
-    group: "styles"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Block Styles Manager"),
-    initialOpen: true,
-    className: "wpdev-block-styles-manager--panel"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_8__.MultiSelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add Styles"),
+    group: "advanced"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+    align: "flex-start"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_8__.MultiSelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add Block Styles"),
     value: attributes.wpdevBlockStyles,
     options: blockStyles.map(blockStyle => ({
       label: blockStyle.title,
@@ -3041,13 +3039,14 @@ const BlockStylesManagerPlugin = props => {
     })),
     multiple: true,
     onChange: saveStylesInAttribute
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_14__["default"],
     onClick: () => setModalView("list"),
     "aria-expanded": "" !== modalView,
     "aria-haspopup": "dialog",
-    variant: "secondary"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Manage Block Styles")))), "" !== modalView && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
+    variant: "secondary",
+    describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Manage Block Styles")
+  })))), "" !== modalView && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Modal, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Block Styles Manager"),
     size: "large",
     headerActions: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(AddNewButton, null),

@@ -16,7 +16,7 @@ function get_block_styles( $args = array() ) {
 		$args,
 		array(
 			'block_type' => array(),
-			'name'       => '',
+			'slug'       => '',
 		)
 	);
 
@@ -134,4 +134,34 @@ function create_block_style( $data ) {
 	file_put_contents( $filename, $css );
 
 	return $data['id'];
+}
+
+
+/**
+ * Update the block style in the file system
+ *
+ * @param int   $id   The block style ID.
+ * @param array $data The block style data.
+ * @return int The block style ID.
+ */
+function update_block_style( $id, $data ) {
+
+	$styles_dir = apply_filters( 'block-styles-manager/location', WP_CONTENT_DIR . '/block-styles' );
+
+	$filename = $styles_dir . '/' . $id . '.css';
+
+	$css = '/*' . PHP_EOL;
+
+	$css .= 'Name: ' . sanitize_text_field( $data['title'] ) . PHP_EOL;
+	$css .= 'Class: ' . sanitize_text_field( $data['slug'] ) . PHP_EOL;
+	$css .= 'Id: ' . sanitize_text_field( $data['id'] ) . PHP_EOL;
+	$css .= 'Block: ' . implode( ',', $data['block_types'] ) . PHP_EOL;
+
+	$css .= '*/' . PHP_EOL;
+
+	$css .= sanitize_textarea_field( $data['content'] );
+
+	file_put_contents( $filename, $css );
+
+	return $id;
 }

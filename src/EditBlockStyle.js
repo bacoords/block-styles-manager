@@ -24,7 +24,6 @@ function EditBlockStyle({ attributes, closeForm }) {
 			title: blockStyle.title,
 			content: blockStyle.content,
 			slug: blockStyle.slug,
-			status: "publish",
 			block_types: blockStyle.block_types ?? [],
 		};
 
@@ -61,6 +60,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 					<TextControl
 						label={__("Class")}
 						value={blockStyle.slug ?? ""}
+						readOnly={blockStyle.id !== 0}
 						help={__("This is the class name that will be added to the block.")}
 						onChange={(slug) =>
 							setBlockStyle({

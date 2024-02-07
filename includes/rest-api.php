@@ -39,7 +39,7 @@ function register_rest_api_endpoints() {
 
 	register_rest_route(
 		'block-styles-manager/v1',
-		'/block-styles/(?P<id>\d+)',
+		'/block-styles/(?P<id>[a-zA-Z0-9\-]+)',
 		array(
 			'methods'             => 'GET',
 			'callback'            => __NAMESPACE__ . '\get_block_style',
@@ -51,7 +51,7 @@ function register_rest_api_endpoints() {
 
 	register_rest_route(
 		'block-styles-manager/v1',
-		'/block-styles/(?P<id>\d+)',
+		'/block-styles/(?P<id>[a-zA-Z0-9\-]+)',
 		array(
 			'methods'             => 'POST',
 			'callback'            => __NAMESPACE__ . '\update_block_style',
@@ -63,7 +63,7 @@ function register_rest_api_endpoints() {
 
 	register_rest_route(
 		'block-styles-manager/v1',
-		'/block-styles/(?P<id>\d+)',
+		'/block-styles/(?P<id>[a-zA-Z0-9\-]+)',
 		array(
 			'methods'             => 'DELETE',
 			'callback'            => __NAMESPACE__ . '\delete_block_style',
@@ -133,24 +133,15 @@ function create_block_style( $request ) {
  **/
 function update_block_style( $request ) {
 
-	$block_style = get_post( $request['id'] );
+	$block_style = \BlockStylesManager\Data\get_block_style( $request['id'] );
 
 	if ( ! $block_style ) {
 		return new \WP_Error( 'not_found', 'Block style not found', array( 'status' => 404 ) );
 	}
 
-	$block_style = $block_style->to_array();
-
 	$block_style_data = json_decode( $request->get_body(), true );
 
-	$block_style['post_title']   = sanitize_text_field( $block_style_data['title'] );
-	$block_style['post_content'] = sanitize_textarea_field( $block_style_data['content'] );
-	$block_style['post_name']    = sanitize_text_field( $block_style_data['slug'] );
-	$block_style['meta_input']   = array(
-		'block_types' => $block_style_data['meta']['block_types'],
-	);
+	$block_style_id = \BlockStylesManager\Data\update_block_style( $request['id'], $block_style_data );
 
-	wp_update_post( $block_style );
-
-	return $block_style;
+	return new \WP_REST_Response( get_block_style( array( 'id' => $block_style_id ) ), 200 );
 }

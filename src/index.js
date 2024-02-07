@@ -2,7 +2,7 @@ import { styles } from "@wordpress/icons";
 import { createHigherOrderComponent } from "@wordpress/compose";
 import { useState, useEffect } from "@wordpress/element";
 
-import { PanelBody, Modal, Button, PanelRow } from "@wordpress/components";
+import { Flex, FlexItem, Modal, Button, PanelRow } from "@wordpress/components";
 import { InspectorControls } from "@wordpress/block-editor";
 import { addFilter } from "@wordpress/hooks";
 import { __ } from "@wordpress/i18n";
@@ -105,36 +105,34 @@ const BlockStylesManagerPlugin = (props) => {
 	};
 
 	return (
-		<InspectorControls group="styles">
-			<PanelBody
-				title={__("Block Styles Manager")}
-				initialOpen={true}
-				className="wpdev-block-styles-manager--panel"
-			>
-				<PanelRow>
-					<MultiSelectControl
-						label={__("Add Styles")}
-						value={attributes.wpdevBlockStyles}
-						options={blockStyles.map((blockStyle) => ({
-							label: blockStyle.title,
-							value: blockStyle.slug,
-						}))}
-						multiple={true}
-						onChange={saveStylesInAttribute}
-					/>
-				</PanelRow>
-				<PanelRow>
-					<Button
-						icon={styles}
-						onClick={() => setModalView("list")}
-						aria-expanded={"" !== modalView}
-						aria-haspopup="dialog"
-						variant="secondary"
-					>
-						{__("Manage Block Styles")}
-					</Button>
-				</PanelRow>
-			</PanelBody>
+		<InspectorControls group="advanced">
+			<PanelRow>
+				<Flex align="flex-start">
+					<FlexItem>
+						<MultiSelectControl
+							label={__("Add Block Styles")}
+							value={attributes.wpdevBlockStyles}
+							options={blockStyles.map((blockStyle) => ({
+								label: blockStyle.title,
+								value: blockStyle.slug,
+							}))}
+							multiple={true}
+							onChange={saveStylesInAttribute}
+						/>
+					</FlexItem>
+					<FlexItem>
+						<Button
+							icon={styles}
+							onClick={() => setModalView("list")}
+							aria-expanded={"" !== modalView}
+							aria-haspopup="dialog"
+							variant="secondary"
+							describedBy={__("Manage Block Styles")}
+						></Button>
+					</FlexItem>
+				</Flex>
+			</PanelRow>
+
 			{"" !== modalView && (
 				<Modal
 					title={__("Block Styles Manager")}
