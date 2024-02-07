@@ -57,29 +57,27 @@ const BlockStylesManager = (props) => {
 	return (
 		<InspectorControls group="advanced">
 			<PanelRow>
-				<Flex align="flex-start">
-					<FlexItem>
-						<MultiSelectControl
-							label={__("Add Block Styles")}
-							value={attributes.wpdevBlockStyles}
-							options={blockStyles.map((blockStyle) => ({
-								label: blockStyle.title,
-								value: blockStyle.slug,
-							}))}
-							multiple={true}
-							onChange={saveStylesInAttribute}
-						/>
-					</FlexItem>
-					<FlexItem>
-						<Button
-							icon={styles}
-							onClick={onClick}
-							aria-haspopup="dialog"
-							variant="secondary"
-							describedBy={__("Manage Block Styles")}
-						></Button>
-					</FlexItem>
-				</Flex>
+				<MultiSelectControl
+					label={__("Add Block Styles")}
+					value={attributes.wpdevBlockStyles}
+					options={blockStyles.map((blockStyle) => ({
+						label: blockStyle.title,
+						value: blockStyle.slug,
+					}))}
+					multiple={true}
+					onChange={saveStylesInAttribute}
+				/>
+			</PanelRow>
+			<PanelRow>
+				<Button
+					icon={styles}
+					onClick={onClick}
+					aria-haspopup="dialog"
+					variant="secondary"
+					describedBy={__("Manage Block Styles")}
+				>
+					{__("Manage Block Styles")}
+				</Button>
 			</PanelRow>
 		</InspectorControls>
 	);

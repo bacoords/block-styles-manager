@@ -2682,9 +2682,7 @@ const BlockStylesManager = props => {
   }, [records, hasResolved]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
     group: "advanced"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
-    align: "flex-start"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_6__.MultiSelectControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_codeamp_block_components__WEBPACK_IMPORTED_MODULE_6__.MultiSelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Add Block Styles"),
     value: attributes.wpdevBlockStyles,
     options: blockStyles.map(blockStyle => ({
@@ -2693,13 +2691,13 @@ const BlockStylesManager = props => {
     })),
     multiple: true,
     onChange: saveStylesInAttribute
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"],
     onClick: onClick,
     "aria-haspopup": "dialog",
     variant: "secondary",
     describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Manage Block Styles")
-  })))));
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Manage Block Styles"))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BlockStylesManager);
 
