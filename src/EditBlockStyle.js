@@ -43,34 +43,28 @@ function EditBlockStyle({ attributes, closeForm }) {
 
 	return (
 		<Flex gap="3" direction="column">
-			<Flex>
-				<FlexItem>
-					<TextControl
-						label={__("Name")}
-						value={blockStyle.title ?? ""}
-						onChange={(title) =>
-							setBlockStyle({
-								...blockStyle,
-								title,
-							})
-						}
-					/>
-				</FlexItem>
-				<FlexItem>
-					<TextControl
-						label={__("Class")}
-						value={blockStyle.slug ?? ""}
-						readOnly={blockStyle.id !== 0}
-						help={__("This is the class name that will be added to the block.")}
-						onChange={(slug) =>
-							setBlockStyle({
-								...blockStyle,
-								slug,
-							})
-						}
-					/>
-				</FlexItem>
-			</Flex>
+			<TextControl
+				label={__("Name")}
+				value={blockStyle.title ?? ""}
+				onChange={(title) =>
+					setBlockStyle({
+						...blockStyle,
+						title,
+					})
+				}
+			/>
+			<TextControl
+				label={__("Class")}
+				value={blockStyle.slug ?? ""}
+				readOnly={blockStyle.id !== 0}
+				help={__("This is the class name that will be added to the block.")}
+				onChange={(slug) =>
+					setBlockStyle({
+						...blockStyle,
+						slug,
+					})
+				}
+			/>
 			<MultiSelectControl
 				label={__("Supported Block Types")}
 				value={blockStyle.block_types ?? []}
@@ -92,6 +86,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 				label={__("CSS")}
 				value={blockStyle.content ?? ""}
 				spellCheck={false}
+				rows={10}
 				onChange={(content) =>
 					setBlockStyle({
 						...blockStyle,

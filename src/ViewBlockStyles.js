@@ -3,9 +3,17 @@ import { Button } from "@wordpress/components";
 import { decodeEntities } from "@wordpress/html-entities";
 import { __ } from "@wordpress/i18n";
 import { DataViews } from "@wordpress/dataviews";
+import { useSelect } from "@wordpress/data";
+import { store } from "./store";
 
-function ViewBlockStyles({ launchEditForm, records, hasResolved }) {
-	console.log(records);
+function ViewBlockStyles({ launchEditForm }) {
+	const { records, hasResolved } = useSelect((select) => {
+		return {
+			records: select(store).getBlockStyles(),
+			hasResolved: select(store).hasFinishedResolution("getBlockStyles"),
+		};
+	}, []);
+
 	return (
 		<>
 			{hasResolved && records.length > 0 && (
@@ -58,9 +66,9 @@ function ViewBlockStyles({ launchEditForm, records, hasResolved }) {
 							maxWidth: 400,
 						},
 					]}
-					supportedLayouts={["table"]}
+					supportedLayouts={["list"]}
 					view={{
-						type: "table",
+						type: "list",
 						perPage: 15,
 						page: 1,
 						layout: {},
