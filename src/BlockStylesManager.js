@@ -56,7 +56,7 @@ const BlockStylesManager = (props) => {
 
 	return (
 		<InspectorControls group="advanced">
-			<PanelRow>
+			<PanelRow header={__("Block Styles")}>
 				<MultiSelectControl
 					label={__("Add Block Styles")}
 					value={attributes.wpdevBlockStyles}

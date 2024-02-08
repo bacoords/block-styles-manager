@@ -9,6 +9,7 @@ import { __ } from "@wordpress/i18n";
 import { useDispatch } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 import { MultiSelectControl } from "@codeamp/block-components";
+import { chevronLeft } from "@wordpress/icons";
 
 import { store } from "./store";
 
@@ -22,7 +23,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 	const saveBlockStyleHandler = async () => {
 		const args = {
 			title: blockStyle.title,
-			content: blockStyle.content,
+			content: blockStyle.content.replaceAll("selector", `.${blockStyle.slug}`),
 			slug: blockStyle.slug,
 			block_types: blockStyle.block_types ?? [],
 		};
@@ -43,6 +44,9 @@ function EditBlockStyle({ attributes, closeForm }) {
 
 	return (
 		<Flex gap="3" direction="column">
+			<Button icon onClick={closeForm} icon={chevronLeft}>
+				{__("Go Back")}
+			</Button>
 			<TextControl
 				label={__("Name")}
 				value={blockStyle.title ?? ""}
@@ -94,18 +98,9 @@ function EditBlockStyle({ attributes, closeForm }) {
 					})
 				}
 			/>
-			<Flex>
-				<FlexItem>
-					<Button variant="primary" onClick={saveBlockStyleHandler}>
-						{__("Save Block Style")}
-					</Button>
-				</FlexItem>
-				<FlexItem>
-					<Button isDestructive onClick={closeForm}>
-						{__("Cancel")}
-					</Button>
-				</FlexItem>
-			</Flex>
+			<Button variant="primary" onClick={saveBlockStyleHandler}>
+				{blockStyle.id !== 0 ? __("Save Changes") : __("Save Block Style")}
+			</Button>
 		</Flex>
 	);
 }

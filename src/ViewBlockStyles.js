@@ -62,7 +62,7 @@ function ViewBlockStyles({ launchEditForm }) {
 								));
 							},
 							header: "Block Types",
-							id: "groups",
+							id: "block_types",
 							maxWidth: 400,
 						},
 					]}
@@ -73,7 +73,7 @@ function ViewBlockStyles({ launchEditForm }) {
 						page: 1,
 						layout: {},
 						filters: [],
-						hiddenFields: [],
+						hiddenFields: ["slug", "block_types"],
 					}}
 					actions={
 						[

@@ -32,7 +32,7 @@ const BlockStylesManagerPlugin = () => {
 		id: 0,
 		title: "New Block Style",
 		slug: "new-block-style",
-		content: ".new-block-style {\n  opacity: 0.5;\n}",
+		content: "selector {\n  opacity: 0.5;\n}",
 		block_types: ["core/group"],
 	};
 
@@ -44,29 +44,11 @@ const BlockStylesManagerPlugin = () => {
 		setCurrentBlockStyle({
 			...blockStyle,
 			title: blockStyle.title,
-			content: blockStyle.content,
+			content: blockStyle.content.replaceAll(`.${blockStyle.slug}`, "selector"),
 		});
 		setModalView("edit");
 	};
 
-	const AddNewButton = () => {
-		if ("list" !== modalView) {
-			return null;
-		}
-		return (
-			<Button
-				onClick={() => {
-					console.log("clicked");
-					setModalView("new");
-				}}
-				variant="primary"
-			>
-				{__("Add New Block Style")}
-			</Button>
-		);
-	};
-
-	// Need to move this out so it loads on the first render.
 	useEffect(() => {
 		if (hasResolved && records.length > 0) {
 			setAllBlockStyles(records);
@@ -106,7 +88,15 @@ const BlockStylesManagerPlugin = () => {
 						{"list" === modalView && (
 							<>
 								<Flex gap="3" direction="column">
-									<AddNewButton />
+									<Button
+										onClick={() => {
+											console.log("clicked");
+											setModalView("new");
+										}}
+										variant="primary"
+									>
+										{__("Add New Block Style")}
+									</Button>
 									<ViewBlockStyles launchEditForm={launchEditForm} />
 								</Flex>
 							</>
