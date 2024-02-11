@@ -15,13 +15,11 @@ function get_block_styles( $args = array() ) {
 	$args = wp_parse_args(
 		$args,
 		array(
-			'block_type' => array(),
-			'slug'       => '',
+			'slug' => '',
 		)
 	);
 
-	$block_styles = array();
-
+	// Filter the block styles array.
 	$styles_dir = apply_filters( 'block-styles-manager/location', WP_CONTENT_DIR . '/block-styles' );
 
 	if ( ! file_exists( $styles_dir ) ) {
@@ -29,7 +27,8 @@ function get_block_styles( $args = array() ) {
 	}
 
 	if ( isset( $args['name'] ) && $args['name'] ) {
-		$names = is_array( $args['name'] ) ? $args['name'] : explode( ',', $args['name'] );
+		$block_styles = array();
+		$names        = is_array( $args['name'] ) ? $args['name'] : explode( ',', $args['name'] );
 		foreach ( $names as $name ) {
 			$block_style = get_block_style( $name );
 			if ( $block_style ) {
@@ -39,17 +38,23 @@ function get_block_styles( $args = array() ) {
 		return $block_styles;
 	}
 
-	foreach ( glob( $styles_dir . '/*.css' ) as $file ) {
+	// Cache for the entire block styles collection.
+	$block_styles = wp_cache_get( 'block_styles', 'wpdev_block_styles' );
 
-		if ( isset( $args['block_type'] ) && $args['block_type'] ) {
-			$block_style = create_block_style_array( $file );
+	if ( ! $block_styles ) {
+		foreach ( glob( $styles_dir . '/*.css' ) as $file ) {
 
-			if ( ! array_intersect( $args['block_type'], $block_style['block_types'] ) ) {
-				continue;
+			if ( isset( $args['block_type'] ) && $args['block_type'] ) {
+				$block_style = create_block_style_array( $file );
+
+				if ( ! array_intersect( $args['block_type'], $block_style['block_types'] ) ) {
+					continue;
+				}
 			}
-		}
-		$block_styles[] = create_block_style_array( $file );
+			$block_styles[] = create_block_style_array( $file );
 
+		}
+		wp_cache_set( 'block_styles', $block_styles, 'wpdev_block_styles' );
 	}
 	return $block_styles;
 }
@@ -109,15 +114,29 @@ function create_block_style_array( $file ) {
  * Save the block style to the file system
  *
  * @param array $data The block style data.
- * @return bool True if the file was saved.
+ * @return string The block style ID.
  */
 function create_block_style( $data ) {
 
 	$styles_dir = apply_filters( 'block-styles-manager/location', WP_CONTENT_DIR . '/block-styles' );
 
-	if ( ! isset( $data['id'] ) || ! $data['id'] ) {
-		$data['id'] = sanitize_title( $data['slug'] );
+	// Confirm slug doesn't exist.
+	$block_styles = get_block_styles( array( 'name' => $data['slug'] ) );
+	$count        = count( $block_styles );
+	$int          = 1;
+	$old_slug     = $data['slug'];
+	while ( $count > 0 ) {
+		$data['slug'] = $old_slug . '-' . $int;
+		$block_styles = get_block_styles( array( 'name' => $data['slug'] ) );
+		$count        = count( $block_styles );
+		++$int;
 	}
+
+	if ( $old_slug !== $data['slug'] ) {
+		$data['content'] = str_replace( '.' . $old_slug, '.' . $data['slug'], $data['content'] );
+	}
+
+	$data['id'] = sanitize_title( $data['slug'] );
 
 	$filename = $styles_dir . '/' . $data['id'] . '.css';
 
@@ -132,6 +151,12 @@ function create_block_style( $data ) {
 	$css .= $data['content'];
 
 	file_put_contents( $filename, $css );
+
+	if ( wp_cache_supports( 'flush_group' ) ) {
+		wp_cache_flush_group( 'wpdev_block_styles' );
+	} else {
+		wp_cache_delete( 'block_styles', 'wpdev_block_styles' );
+	}
 
 	return $data['id'];
 }

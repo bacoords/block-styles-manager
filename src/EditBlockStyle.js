@@ -1,15 +1,11 @@
-import {
-	TextControl,
-	TextareaControl,
-	Button,
-	Flex,
-	FlexItem,
-} from "@wordpress/components";
+import { TextControl, Button, Flex } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { useDispatch } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 import { MultiSelectControl } from "@codeamp/block-components";
 import { chevronLeft } from "@wordpress/icons";
+import CodeMirror from "@uiw/react-codemirror";
+import { css } from "@codemirror/lang-css";
 
 import { store } from "./store";
 
@@ -84,19 +80,19 @@ function EditBlockStyle({ attributes, closeForm }) {
 					})
 				}
 			/>
-			{/* @todo Make the a real code editor with tokens for the class name */}
-			{/* @todo Add variables, themejson stuff, etc */}
-			<TextareaControl
-				label={__("CSS")}
+
+			<CodeMirror
+				// label={__("CSS")}
 				value={blockStyle.content ?? ""}
-				spellCheck={false}
-				rows={10}
+				// spellCheck={false}
+				// rows={10}
 				onChange={(content) =>
 					setBlockStyle({
 						...blockStyle,
 						content,
 					})
 				}
+				extensions={[css()]}
 			/>
 			<Button variant="primary" onClick={saveBlockStyleHandler}>
 				{blockStyle.id !== 0 ? __("Save Changes") : __("Save Block Style")}

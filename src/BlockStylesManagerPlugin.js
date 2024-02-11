@@ -18,7 +18,7 @@ import EditBlockStyle from "./EditBlockStyle";
 const BlockStylesManagerPlugin = () => {
 	const [modalView, setModalView] = useState("list");
 	const [currentBlockStyle, setCurrentBlockStyle] = useState(null);
-	const [blockStyles, setBlockStyles] = useState([]);
+
 	const [allBlockStyles, setAllBlockStyles] = useState([]);
 
 	const { records, hasResolved } = useSelect((select) => {
@@ -53,9 +53,6 @@ const BlockStylesManagerPlugin = () => {
 		if (hasResolved && records.length > 0) {
 			setAllBlockStyles(records);
 
-			setBlockStyles(
-				records.filter((record) => record.block_types.includes(name)),
-			);
 			// Add records CSS to iframe
 			let css = "";
 			records.forEach((record) => {
