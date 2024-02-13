@@ -26,9 +26,9 @@ function get_block_styles( $args = array() ) {
 		return array();
 	}
 
-	if ( isset( $args['name'] ) && $args['name'] ) {
+	if ( isset( $args['slug'] ) && $args['slug'] ) {
 		$block_styles = array();
-		$names        = is_array( $args['name'] ) ? $args['name'] : explode( ',', $args['name'] );
+		$names        = is_array( $args['slug'] ) ? $args['slug'] : explode( ',', $args['slug'] );
 		foreach ( $names as $name ) {
 			$block_style = get_block_style( $name );
 			if ( $block_style ) {
@@ -42,6 +42,7 @@ function get_block_styles( $args = array() ) {
 	$block_styles = wp_cache_get( 'block_styles', 'wpdev_block_styles' );
 
 	if ( ! $block_styles ) {
+		$block_styles = array();
 		foreach ( glob( $styles_dir . '/*.css' ) as $file ) {
 
 			if ( isset( $args['block_type'] ) && $args['block_type'] ) {
@@ -121,21 +122,24 @@ function create_block_style( $data ) {
 	$styles_dir = apply_filters( 'block-styles-manager/location', WP_CONTENT_DIR . '/block-styles' );
 
 	// Confirm slug doesn't exist.
-	$block_styles = get_block_styles( array( 'name' => $data['slug'] ) );
+	$block_styles = get_block_styles( array( 'slug' => $data['slug'] ) );
 	$count        = count( $block_styles );
-	$int          = 1;
-	$old_slug     = $data['slug'];
-	while ( $count > 0 ) {
-		$data['slug'] = $old_slug . '-' . $int;
-		$block_styles = get_block_styles( array( 'name' => $data['slug'] ) );
-		$count        = count( $block_styles );
-		++$int;
+	if ( $count > 0 ) {
+		$int      = 1;
+		$old_slug = $data['slug'];
+		while ( $count > 0 ) {
+			$data['slug'] = $old_slug . '-' . $int;
+			$block_styles = get_block_styles( array( 'slug' => $data['slug'] ) );
+			$count        = count( $block_styles );
+			++$int;
+		}
+
+		if ( $old_slug !== $data['slug'] ) {
+			$data['content'] = str_replace( '.' . $old_slug, '.' . $data['slug'], $data['content'] );
+		}
 	}
 
-	if ( $old_slug !== $data['slug'] ) {
-		$data['content'] = str_replace( '.' . $old_slug, '.' . $data['slug'], $data['content'] );
-	}
-
+	// Set the ID.
 	$data['id'] = sanitize_title( $data['slug'] );
 
 	$filename = $styles_dir . '/' . $data['id'] . '.css';
@@ -187,6 +191,12 @@ function update_block_style( $id, $data ) {
 	$css .= sanitize_textarea_field( $data['content'] );
 
 	file_put_contents( $filename, $css );
+
+	if ( wp_cache_supports( 'flush_group' ) ) {
+		wp_cache_flush_group( 'wpdev_block_styles' );
+	} else {
+		wp_cache_delete( 'block_styles', 'wpdev_block_styles' );
+	}
 
 	return $id;
 }

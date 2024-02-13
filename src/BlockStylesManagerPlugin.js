@@ -1,15 +1,8 @@
 import { PluginSidebar, PluginSidebarMoreMenuItem } from "@wordpress/edit-post";
 import { __ } from "@wordpress/i18n";
 import { useState, useEffect } from "@wordpress/element";
-import {
-	Flex,
-	FlexItem,
-	Modal,
-	Button,
-	PanelRow,
-	PanelBody,
-} from "@wordpress/components";
-import { useSelect } from "@wordpress/data";
+import { Flex, Button, PanelRow, PanelBody } from "@wordpress/components";
+import { useSelect, useDispatch } from "@wordpress/data";
 import { store } from "./store";
 
 import ViewBlockStyles from "./ViewBlockStyles";
@@ -17,33 +10,36 @@ import EditBlockStyle from "./EditBlockStyle";
 
 const BlockStylesManagerPlugin = () => {
 	const [modalView, setModalView] = useState("list");
-	const [currentBlockStyle, setCurrentBlockStyle] = useState(null);
 
 	const [allBlockStyles, setAllBlockStyles] = useState([]);
 
-	const { records, hasResolved } = useSelect((select) => {
+	const { records, hasResolved, currentlyEditing } = useSelect((select) => {
 		return {
 			records: select(store).getBlockStyles(),
 			hasResolved: select(store).hasFinishedResolution("getBlockStyles"),
+			currentlyEditing: select(store).getCurrentlyEditing(),
 		};
 	}, []);
+
+	const { setCurrentlyEditing } = useDispatch(store);
 
 	const newBlockStyle = {
 		id: 0,
 		title: "New Block Style",
 		slug: "new-block-style",
-		content: "selector {\n  opacity: 0.5;\n}",
+		content: "selector {\n\n}",
 		block_types: ["core/group"],
 	};
 
-	const launchEditForm = (id) => {
-		let blockStyle = allBlockStyles.find((blockStyle) => blockStyle.id === id);
+	const launchEditForm = (slug) => {
+		let blockStyle = allBlockStyles.find(
+			(blockStyle) => blockStyle.slug === slug,
+		);
 		if (!blockStyle) {
 			return;
 		}
-		setCurrentBlockStyle({
+		setCurrentlyEditing({
 			...blockStyle,
-			title: blockStyle.title,
 			content: blockStyle.content.replaceAll(`.${blockStyle.slug}`, "selector"),
 		});
 		setModalView("edit");
@@ -70,6 +66,14 @@ const BlockStylesManagerPlugin = () => {
 			destination.appendChild(style);
 		}
 	}, [records, hasResolved]);
+
+	useEffect(() => {
+		console.log("currentlyEditing", currentlyEditing);
+		if (currentlyEditing) {
+			launchEditForm(currentlyEditing);
+			setModalView("edit");
+		}
+	}, [currentlyEditing, hasResolved]);
 
 	return (
 		<>
@@ -102,7 +106,7 @@ const BlockStylesManagerPlugin = () => {
 						{modalView === "edit" && (
 							<>
 								<EditBlockStyle
-									attributes={currentBlockStyle}
+									attributes={currentlyEditing}
 									closeForm={() => {
 										setModalView("list");
 									}}

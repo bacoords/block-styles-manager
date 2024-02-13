@@ -3,6 +3,7 @@ import { createReduxStore, register } from "@wordpress/data";
 
 const DEFAULT_STATE = {
 	block_styles: [],
+	currentlyEditing: null,
 };
 
 const STORE_NAME = "wpdev/block-styles";
@@ -34,6 +35,13 @@ const actions = {
 		};
 	},
 
+	setCurrentlyEditing(block_style) {
+		return {
+			type: "SET_CURRENTLY_EDITING",
+			block_style,
+		};
+	},
+
 	fetchFromAPI(path) {
 		return {
 			type: "FETCH_FROM_API",
@@ -54,6 +62,9 @@ const selectors = {
 	getBlockStyles(state) {
 		return state.block_styles;
 	},
+	getCurrentlyEditing(state) {
+		return state.currentlyEditing;
+	},
 };
 
 const reducer = (state = DEFAULT_STATE, action) => {
@@ -73,6 +84,16 @@ const reducer = (state = DEFAULT_STATE, action) => {
 					),
 					action.block_style,
 				],
+			};
+		case "GET_CURRENTLY_EDITING":
+			return {
+				...state,
+				currentlyEditing: action.block_style,
+			};
+		case "SET_CURRENTLY_EDITING":
+			return {
+				...state,
+				currentlyEditing: action.block_style,
 			};
 		default:
 			return state;
@@ -111,6 +132,10 @@ const resolvers = {
 			data: action.block_style,
 		});
 		return actions.save(blockStyle);
+	},
+
+	setCurrentlyEditing(action) {
+		return actions.setCurrentlyEditing(action.block_style);
 	},
 };
 

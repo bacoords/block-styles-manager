@@ -24,8 +24,6 @@ function EditBlockStyle({ attributes, closeForm }) {
 			block_types: blockStyle.block_types ?? [],
 		};
 
-		console.log(args);
-
 		if (blockStyle.id) {
 			args.id = blockStyle.id;
 		}
@@ -40,7 +38,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 
 	return (
 		<Flex gap="3" direction="column">
-			<Button icon onClick={closeForm} icon={chevronLeft}>
+			<Button onClick={closeForm} icon={chevronLeft}>
 				{__("Go Back")}
 			</Button>
 			<TextControl
