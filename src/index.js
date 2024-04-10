@@ -4,7 +4,7 @@ import BlockStylesManagerPlugin from "./BlockStylesManagerPlugin";
 import BlockStylesManager from "./BlockStylesManager";
 
 import { registerPlugin } from "@wordpress/plugins";
-import { styles } from "@wordpress/icons";
+import { brush } from "@wordpress/icons";
 
 import "./filters.js";
 
@@ -33,7 +33,7 @@ addFilter(
 	}),
 );
 
-registerPlugin("wpdev-block-styles-manager", {
-	icon: styles,
+registerPlugin("wpdev-bsm", {
+	icon: brush,
 	render: BlockStylesManagerPlugin,
 });

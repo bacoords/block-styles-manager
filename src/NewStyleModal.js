@@ -8,7 +8,7 @@ function NewStyleModal({ name, onSuccess, onRequestClose }) {
 	const [blockStyle, setBlockStyle] = useState({
 		title: "",
 		slug: "",
-		content: "selector {\n\n}",
+		content: ".your-class-here {\n\n}",
 		block_types: [name],
 	});
 
@@ -31,14 +31,14 @@ function NewStyleModal({ name, onSuccess, onRequestClose }) {
 	};
 
 	useEffect(() => {
-		if (!records.length || !blockStyle.slug) {
+		if (!blockStyle.slug) {
 			setIsSlugValid(false);
 			return;
 		}
 
-		const isSlugValid = !records.find(
-			(record) => record.slug === blockStyle.slug,
-		);
+		const isSlugValid =
+			records.length < 1 ||
+			!records.find((record) => record.slug === blockStyle.slug);
 
 		setIsSlugValid(isSlugValid);
 	}, [blockStyle.slug]);

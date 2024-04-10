@@ -43,7 +43,7 @@ const BlockStylesManager = (props) => {
 	 * @returns {void}
 	 */
 	const jumpToSidebar = () => {
-		openGeneralSidebar("wpdev-block-styles-manager/wpdev-block-styles-manager");
+		openGeneralSidebar("wpdev-bsm/wpdev-block-styles-manager");
 	};
 
 	const loadNewModal = () => {

@@ -19,7 +19,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 	const saveBlockStyleHandler = async () => {
 		const args = {
 			title: blockStyle.title,
-			content: blockStyle.content.replaceAll("selector", `.${blockStyle.slug}`),
+			content: blockStyle.content,
 			slug: blockStyle.slug,
 			block_types: blockStyle.block_types ?? [],
 		};

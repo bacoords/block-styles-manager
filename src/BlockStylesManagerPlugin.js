@@ -1,9 +1,10 @@
-import { PluginSidebar, PluginSidebarMoreMenuItem } from "@wordpress/edit-post";
+import { PluginSidebar, PluginSidebarMoreMenuItem } from "@wordpress/edit-site";
 import { __ } from "@wordpress/i18n";
 import { useState, useEffect } from "@wordpress/element";
 import { Flex, Button, PanelRow, PanelBody } from "@wordpress/components";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { store } from "./store";
+import { brush } from "@wordpress/icons";
 
 import ViewBlockStyles from "./ViewBlockStyles";
 import EditBlockStyle from "./EditBlockStyle";
@@ -27,7 +28,7 @@ const BlockStylesManagerPlugin = () => {
 		id: 0,
 		title: "New Block Style",
 		slug: "new-block-style",
-		content: "selector {\n\n}",
+		content: ".your-class-here {\n\n}",
 		block_types: ["core/group"],
 	};
 
@@ -40,7 +41,7 @@ const BlockStylesManagerPlugin = () => {
 		}
 		setCurrentlyEditing({
 			...blockStyle,
-			content: blockStyle.content.replaceAll(`.${blockStyle.slug}`, "selector"),
+			content: blockStyle.content,
 		});
 		setModalView("edit");
 	};
@@ -77,12 +78,16 @@ const BlockStylesManagerPlugin = () => {
 
 	return (
 		<>
-			<PluginSidebarMoreMenuItem target="wpdev-block-styles-manager">
+			<PluginSidebarMoreMenuItem
+				target="wpdev-block-styles-manager"
+				icon={brush}
+			>
 				{__("Block Styles Manager")}
 			</PluginSidebarMoreMenuItem>
 			<PluginSidebar
 				name="wpdev-block-styles-manager"
 				title={__("Block Styles Manager")}
+				icon={brush}
 			>
 				<PanelBody>
 					<PanelRow>
