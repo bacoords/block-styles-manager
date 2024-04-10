@@ -39,7 +39,7 @@ function EditBlockStyle({ attributes, closeForm }) {
 	return (
 		<Flex gap="3" direction="column">
 			<Button onClick={closeForm} icon={chevronLeft}>
-				{__("Go Back")}
+				{__("All Styles")}
 			</Button>
 			<TextControl
 				label={__("Name")}

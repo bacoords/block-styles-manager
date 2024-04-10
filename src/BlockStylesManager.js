@@ -79,7 +79,7 @@ const BlockStylesManager = (props) => {
 			<InspectorControls group="settings">
 				<PanelBody title={__("Block Styles")}>
 					<PanelRow>
-						<Flex justify="flex-start">
+						<Flex justify="flex-start" direction="column">
 							{attributes.wpdevBlockStyles.map((slug) => {
 								const blockStyle = blockStyles.find(
 									(blockStyle) => blockStyle.slug === slug,
@@ -90,6 +90,7 @@ const BlockStylesManager = (props) => {
 								return (
 									<Button
 										key={slug}
+										variant="secondary"
 										onClick={() => {
 											editBlockStyle(blockStyle);
 										}}

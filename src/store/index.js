@@ -103,7 +103,7 @@ const reducer = (state = DEFAULT_STATE, action) => {
 const controls = {
 	FETCH_FROM_API(action) {
 		console.log("FETCH_FROM_API", action);
-		return apiFetch({ path: action.path });
+		return apiFetch({ path: action.path, method: "GET", data: action.query });
 	},
 
 	UPDATE_IN_API(action) {
@@ -117,7 +117,7 @@ const controls = {
 };
 
 const resolvers = {
-	*getBlockStyles() {
+	*getBlockStyles(query) {
 		const blockStyles = yield actions.fetchFromAPI(
 			"/block-styles-manager/v1/block-styles",
 		);

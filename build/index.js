@@ -3374,7 +3374,8 @@ const BlockStylesManager = props => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Block Styles")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
-    justify: "flex-start"
+    justify: "flex-start",
+    direction: "column"
   }, attributes.wpdevBlockStyles.map(slug => {
     const blockStyle = blockStyles.find(blockStyle => blockStyle.slug === slug);
     if (!blockStyle) {
@@ -3382,6 +3383,7 @@ const BlockStylesManager = props => {
     }
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
       key: slug,
+      variant: "secondary",
       onClick: () => {
         editBlockStyle(blockStyle);
       }
@@ -3616,7 +3618,7 @@ function EditBlockStyle({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     onClick: closeForm,
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Go Back")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("All Styles")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Name"),
     value: (_blockStyle$title = blockStyle.title) !== null && _blockStyle$title !== void 0 ? _blockStyle$title : "",
     onChange: title => setBlockStyle({
@@ -3804,7 +3806,7 @@ function ViewBlockStyles({
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, hasResolved && records.length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_dataviews__WEBPACK_IMPORTED_MODULE_6__["default"], {
     data: records,
     getItemId: item => {
-      return item.id;
+      return item.slug;
     },
     onChangeView: function noRefCheck() {},
     fields: [{
@@ -3855,20 +3857,12 @@ function ViewBlockStyles({
       filters: [],
       hiddenFields: ["slug", "block_types"]
     },
-    actions: [
-      // {
-      // 	callback: () => {
-      // 		// launchEditForm();
-      // 	},
-      // 	id: "delete",
-      // 	label: __("Delete"),
-      // 	icon: <Icon icon={edit} />,
-      // },
-    ],
+    actions: [],
     paginationInfo: {
       totalPages: 1,
       totalItems: records.length
-    }
+    },
+    search: true
   }));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ViewBlockStyles);
@@ -4116,7 +4110,9 @@ const controls = {
   FETCH_FROM_API(action) {
     console.log("FETCH_FROM_API", action);
     return _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
-      path: action.path
+      path: action.path,
+      method: "GET",
+      data: action.query
     });
   },
   UPDATE_IN_API(action) {
@@ -4129,7 +4125,7 @@ const controls = {
   }
 };
 const resolvers = {
-  *getBlockStyles() {
+  *getBlockStyles(query) {
     const blockStyles = yield actions.fetchFromAPI("/block-styles-manager/v1/block-styles");
     return actions.hydrate(blockStyles);
   },

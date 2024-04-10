@@ -20,7 +20,7 @@ function ViewBlockStyles({ launchEditForm }) {
 				<DataViews
 					data={records}
 					getItemId={(item) => {
-						return item.id;
+						return item.slug;
 					}}
 					onChangeView={function noRefCheck() {}}
 					fields={[
@@ -75,22 +75,12 @@ function ViewBlockStyles({ launchEditForm }) {
 						filters: [],
 						hiddenFields: ["slug", "block_types"],
 					}}
-					actions={
-						[
-							// {
-							// 	callback: () => {
-							// 		// launchEditForm();
-							// 	},
-							// 	id: "delete",
-							// 	label: __("Delete"),
-							// 	icon: <Icon icon={edit} />,
-							// },
-						]
-					}
+					actions={[]}
 					paginationInfo={{
 						totalPages: 1,
 						totalItems: records.length,
 					}}
+					search={true}
 				/>
 			)}
 		</>
