@@ -1,4 +1,5 @@
-import { PluginSidebar, PluginSidebarMoreMenuItem } from "@wordpress/edit-site";
+import { PluginSidebarMoreMenuItem } from "@wordpress/edit-site";
+import { PluginSidebar } from "@wordpress/editor";
 import { __ } from "@wordpress/i18n";
 import { useState, useEffect } from "@wordpress/element";
 import { Flex, Button, PanelRow, PanelBody } from "@wordpress/components";
@@ -60,7 +61,7 @@ const BlockStylesManagerPlugin = () => {
 			style.id = "wpdev-block-styles";
 			let destination =
 				window.parent.document.querySelector('iframe[name="editor-canvas"]')
-					?.document.head ?? document.head;
+					?.contentDocument.head ?? document.head;
 
 			destination.querySelector("#wpdev-block-styles")?.remove();
 
