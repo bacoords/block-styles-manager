@@ -154,6 +154,10 @@ function create_block_style( $data ) {
 
 	$css .= $data['content'];
 
+	if ( ! file_exists( $styles_dir ) ) {
+		mkdir( $styles_dir );
+	}
+
 	file_put_contents( $filename, $css );
 
 	if ( wp_cache_supports( 'flush_group' ) ) {

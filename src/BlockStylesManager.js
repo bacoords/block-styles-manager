@@ -30,8 +30,11 @@ const BlockStylesManager = (props) => {
 		};
 	}, []);
 
-	const { openGeneralSidebar } = useDispatch("core/edit-post");
+	const siteStore = useDispatch('core/edit-site');
+	const postStore = useDispatch("core/edit-post");
 	const { setCurrentlyEditing } = useDispatch(store);
+
+	const openGeneralSidebar = siteStore?.openGeneralSidebar || postStore?.openGeneralSidebar;
 
 	const saveStylesInAttribute = (slugs) => {
 		setAttributes({ wpdevBlockStyles: slugs });
